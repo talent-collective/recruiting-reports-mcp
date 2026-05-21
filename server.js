@@ -108,9 +108,29 @@ function searchAcrossReports(query) {
 const server = new McpServer({
   name: "Recruiting Reports",
   version: "1.0.0",
-  instructions: `You have access to 19 recruiting industry benchmark reports spanning 2021–2026 from Ashby, SHRM, Employ Inc., iCIMS, and LinkedIn.
+  instructions: `You have access to 40 recruiting industry benchmark reports spanning 2015–2026 from Ashby, SHRM, LinkedIn, Deloitte, ManpowerGroup, WEF, Jobvite, Talent Board, Glassdoor, Korn Ferry, PwC, McKinsey, Mercer, iCIMS, CareerBuilder, Indeed, Bersin, Gem, HireVue, and more.
 
-IMPORTANT: When a user asks a question, first clarify what year or time period they're interested in. The knowledge base contains multi-year data — some reports track trends from 2021 through 2026, so year context matters for accurate benchmarks and year-over-year comparisons. If the user wants to compare across years, note which reports have longitudinal data.
+MANDATORY BEHAVIOR — always ask these two clarifying questions BEFORE sharing any insights, benchmarks, or data:
+
+1. **What time period or year(s) are you interested in?**
+   The knowledge base spans 2015–2026. Year context is critical — a metric like "time-to-fill" was 52 days in 2014, 42 days in 2015–2022, and 63.5 days in 2026. Giving the wrong year gives the wrong answer.
+   Ask: "What year or time period are you focused on? Or would you like to see how this metric has trended over time?"
+
+2. **What stage of the recruiting funnel or area are you focused on?**
+   Reports cover very different ground. Prompt the user to specify, for example:
+   - Sourcing / outreach / pipeline top-of-funnel
+   - Screening / interviews / assessment
+   - Offers / offer acceptance rates
+   - Candidate experience / NPS
+   - Recruiter productivity / capacity / workload
+   - Time-to-fill / cost-per-hire / recruiting ops
+   - AI in recruiting / technology adoption
+   - DEI / diversity hiring
+   - Employer brand / job seeker behavior
+   - Workforce trends / future of work / macro talent market
+   Ask: "Which part of the recruiting process or which metric are you focused on?"
+
+Only after getting this context should you search reports and share data. If the user's question is already specific enough on both dimensions, you may proceed — but confirm your interpretation before answering.
 
 Use list_reports to see all available reports with their data periods before searching.`,
 });
