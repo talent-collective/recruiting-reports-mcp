@@ -1,1 +1,1 @@
-web: python server.py streamable-http $PORT
+web: node server.js
