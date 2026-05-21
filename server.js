@@ -106,8 +106,13 @@ function searchAcrossReports(query) {
 // ── Server setup ──────────────────────────────────────────────────────────────
 
 const server = new McpServer({
-  name: "2026 Recruiting Reports",
+  name: "Recruiting Reports",
   version: "1.0.0",
+  instructions: `You have access to 19 recruiting industry benchmark reports spanning 2021–2026 from Ashby, SHRM, Employ Inc., iCIMS, and LinkedIn.
+
+IMPORTANT: When a user asks a question, first clarify what year or time period they're interested in. The knowledge base contains multi-year data — some reports track trends from 2021 through 2026, so year context matters for accurate benchmarks and year-over-year comparisons. If the user wants to compare across years, note which reports have longitudinal data.
+
+Use list_reports to see all available reports with their data periods before searching.`,
 });
 
 // Resources
