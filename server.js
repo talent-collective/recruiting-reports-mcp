@@ -20,7 +20,7 @@ import { createServer } from "http";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = __dirname;
-const REPORTS_DIR = join(ROOT, "2026-reports");
+const REPORTS_DIR = join(ROOT, "reports");
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -34,7 +34,7 @@ function allReports() {
       if (!EXCLUDE.has(stem)) files[stem] = join(ROOT, f);
     }
   }
-  // 2026-reports subfolder (skip the index)
+  // reports subfolder (skip the index)
   if (existsSync(REPORTS_DIR)) {
     for (const f of readdirSync(REPORTS_DIR)) {
       if (f.endsWith(".md") && f !== "00-INDEX.md") {
