@@ -18,29 +18,23 @@ Sources include Ashby, Gem, LinkedIn, SHRM, iCIMS, Korn Ferry, HireVue, and more
 
 ## How to install
 
-You'll need **Claude Code** (the command-line app from Anthropic). If you don't have it yet, install it at [claude.ai/code](https://claude.ai/code).
+### Option A — Claude.ai (easiest, no installs required)
 
-### Step 1 — Open your MCP config file
+Works with any paid Claude plan directly in your browser.
 
-The config file lives at `~/.claude/mcp.json` on your computer. If it doesn't exist yet, you'll need to create it.
+1. Go to [claude.ai](https://claude.ai) and open **Settings → Customize → Connectors**
+2. Click **+** next to Connectors, then choose **Add custom connector**
+3. Give it a name (e.g. `Recruiting Reports`) and paste in the URL:
+   ```
+   https://two026-recruiting-reports.onrender.com/mcp
+   ```
+4. Click **Add**
 
-**On a Mac**, open Terminal and run:
+To use it in a conversation, click the **+** button in the chat input, go to **Connectors**, and toggle it on.
 
-```bash
-open -a TextEdit ~/.claude/mcp.json
-```
+### Option B — Claude Code (CLI)
 
-If you get a "No such file or directory" error, run this first to create it:
-
-```bash
-mkdir -p ~/.claude && echo '{}' > ~/.claude/mcp.json
-```
-
-Then try the `open` command again.
-
-### Step 2 — Paste in the config
-
-Replace the contents of the file with:
+If you use Claude Code, add this to `~/.claude/mcp.json`:
 
 ```json
 {
@@ -53,15 +47,11 @@ Replace the contents of the file with:
 }
 ```
 
-If you already have other MCP servers listed in the file, just add the `"recruiting-reports"` block inside the existing `"mcpServers"` section — don't replace the whole file.
+Restart Claude Code — the server connects automatically.
 
-### Step 3 — Restart Claude Code
+### Start asking questions
 
-Quit and reopen Claude Code. The server connects automatically on startup.
-
-### Step 4 — Start asking questions
-
-In any Claude Code session, ask questions about recruiting benchmarks. Claude will pull data directly from the reports.
+In any session with the connector enabled, ask questions about recruiting benchmarks. Claude will pull data directly from the reports.
 
 ---
 
