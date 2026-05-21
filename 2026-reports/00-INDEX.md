@@ -41,21 +41,41 @@
 **Data:** 1.2B+ members, 12B+ data points  
 **Best for:** Macro talent market trends, AI in recruiting adoption, skills-first hiring, passive vs. active job seekers
 
+## 8. Gem — 2026 Recruiting Benchmarks Report
+**File:** `gem-recruiting-benchmarks-2026.md`  
+**Data:** 165M applications, 1.2M hires, 15M candidates  
+**Best for:** Recruiter workload benchmarks, sourcing channel ROI (sourced = 8x more likely to hire), OAR trends, interview volume by role type
+
+## 9. Gem — 2026 Email Outreach Benchmarks for Recruiters
+**File:** `gem-email-outreach-benchmarks-2026.md`  
+**Data:** 6.2M email sequences, 15.5M messages (2025 Gem platform)  
+**Best for:** Recruiter outreach sequence structure, send timing, subject line strategy, SOBO (hiring manager outreach)
+
+## 10. Korn Ferry — TA Trends 2026: Human–AI Power Couple
+**File:** `kornferry-ta-trends-2026.md`  
+**Data:** 1,674 global talent leaders + 230 Korn Ferry experts surveyed  
+**Best for:** AI adoption in TA (84%), autonomous agent trends (52%), office mandate impact, critical skills priorities, TA strategic positioning
+
+## 11. HireVue — 2026 Global AI in Hiring Report
+**File:** `hirevue-ai-in-hiring-2026.md`  
+**Data:** 3,100+ hiring managers surveyed globally  
+**Best for:** AI adoption rates (77% of HR teams), candidate AI usage (71% use AI for resumes), trust gaps, transparency requirements
+
 ---
 
 ## ASHBY DEEP-DIVE REPORTS (multi-year data)
 
-## 8. Ashby — Recruiting Coordination (2024)
+## 12. Ashby — Recruiting Coordination (2024)
 **File:** `ashby-recruiting-coordination.md`  
 **Data:** 2.8M candidates, 5.1M interview events (Q1 2020–Q2 2024)  
 **Best for:** Coordinator staffing benchmarks, scheduling speed, direct booking impact, scorecard submission rates
 
-## 9. Ashby — Offer Acceptance Rates (2021–2024)
+## 13. Ashby — Offer Acceptance Rates (2021–2024)
 **File:** `ashby-offer-acceptance-rates.md`  
 **Data:** 230K offers (Jan 2021–Mar 2024)  
 **Best for:** OAR by function and industry, time-in-offer-stage norms, rescission rates, source-of-offer trends
 
-## 10. Ashby — Candidate Sourcing (2022–2024)
+## 14. Ashby — Candidate Sourcing (2022–2024)
 **File:** `ashby-candidate-sourcing.md`  
 **Data:** 500K+ email sequences (Jan 2022–Jan 2024)  
 **Best for:** Sourcing email benchmarks, sequence structure, AI personalization lift (46%), role-by-role sourcing patterns
@@ -111,6 +131,21 @@
 
 | Metric | Benchmark | Source | Year |
 |--------|-----------|--------|------|
+| Hiring growth YoY 2026 | +8.3% (still 30% below 2021) | Gem | 2026 |
+| Applications per recruiter vs. 2021 | +93% | Gem | 2026 |
+| Hires per recruiter vs. 2021 | -43% | Gem | 2026 |
+| Offer acceptance rate | 82% (highest since 2021) | Gem | 2026 |
+| Sourced candidates: hiring likelihood | 8x more than other channels | Gem | 2026 |
+| Interviews per hire increase vs. 2021 | +33% overall | Gem | 2026 |
+| TA leaders planning to use AI | 84% | Korn Ferry | 2026 |
+| TA leaders adding autonomous AI agents | 52% | Korn Ferry | 2026 |
+| Companies replacing roles with AI | 43% | Korn Ferry | 2026 |
+| Office mandates hinder recruiting | 52% of TA leaders | Korn Ferry | 2026 |
+| Remote roles easier to fill | 73% of TA leaders | Korn Ferry | 2026 |
+| Critical thinking = #1 hiring priority | 73% of TA leaders | Korn Ferry | 2026 |
+| Candidates using AI for resumes | 71% | HireVue | 2026 |
+| HR teams using AI regularly | 77% | HireVue | 2026 |
+| Hiring teams with full AI confidence | 41% | HireVue | 2026 |
 | Hires per recruiter (business) | 5.0 (5-yr high) | Ashby | Q1 2026 |
 | Hires per recruiter (technical) | 3.8 | Ashby | Q1 2026 |
 | Applications per hire increase | +182% | Ashby | 2021→2024 |
