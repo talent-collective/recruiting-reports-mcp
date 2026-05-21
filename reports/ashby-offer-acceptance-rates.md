@@ -1,11 +1,15 @@
-# Ashby — Offer Acceptance Rates Report
-
-**Source:** ashbyhq.com/talent-trends-report  
-**Data:** 230K applications reaching offer stage  
-**Period:** January 2021 – March 2024  
-**Best for:** OAR benchmarks by function and industry, time-in-offer-stage norms, rescission rates
-
 ---
+title: Ashby — Offer Acceptance Rates Report
+source: Ashby
+year: 2024
+topics: [offer-acceptance]
+data_period_start: "2021-01"
+data_period_end: "2024-12"
+sample_size: "230K applications reaching offer stage"
+best_for: "OAR benchmarks by function and industry, time-in-offer-stage norms, rescission rates"
+---
+
+# Ashby — Offer Acceptance Rates Report
 
 ## Overall OAR Benchmarks
 

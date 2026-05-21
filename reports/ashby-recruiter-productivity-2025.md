@@ -1,11 +1,15 @@
-# Ashby: Recruiter Productivity | 2025 Talent Trends Report
-**Source:** https://www.ashbyhq.com/talent-trends-report/reports/2023-recruiter-productivity-trends-report
-**Author:** Kevin Connolly
-**Published:** January 7, 2025 (updated data through Q1 2026 per separate report)
-**Data:** 109M+ applications, 247K jobs, January 2021–March 2026
-**Read time:** 12 minutes
-
 ---
+title: "Ashby: Recruiter Productivity | 2025 Talent Trends Report"
+source: Ashby
+year: 2025
+published: "2025-01-07"
+topics: [recruiter-productivity, labor-market]
+url: "https://www.ashbyhq.com/talent-trends-report/reports/2023-recruiter-productivity-trends-report"
+author: Kevin Connolly
+sample_size: "109M+ applications, 247K jobs, January 2021–March 2026"
+---
+
+# Ashby: Recruiter Productivity | 2025 Talent Trends Report
 
 ## Key Takeaways
 

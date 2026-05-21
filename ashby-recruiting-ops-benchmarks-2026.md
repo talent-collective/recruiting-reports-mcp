@@ -1,11 +1,15 @@
-# Ashby: Recruiting Operations Benchmarks | 2026 Talent Trends Report
-**Source:** https://www.ashbyhq.com/talent-trends-report/reports/recruiting-operations-benchmarks-talent-trends
-**Author:** Joel Westmark
-**Published:** May 7, 2026
-**Data:** 54M+ applications, 93K jobs, January 2021–March 2026
-**Read time:** 11 minutes
-
 ---
+title: "Ashby: Recruiting Operations Benchmarks | 2026 Talent Trends Report"
+source: Ashby
+year: 2026
+published: "2026-05-07"
+topics: [time-to-fill, time-to-hire, funnel-metrics, referrals]
+url: "https://www.ashbyhq.com/talent-trends-report/reports/recruiting-operations-benchmarks-talent-trends"
+author: Joel Westmark
+sample_size: "54M+ applications, 93K jobs, January 2021–March 2026"
+---
+
+# Ashby: Recruiting Operations Benchmarks | 2026 Talent Trends Report
 
 ## Key Takeaways
 

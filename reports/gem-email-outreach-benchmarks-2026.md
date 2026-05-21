@@ -1,11 +1,14 @@
-# Gem — 2026 Email Outreach Benchmarks for Recruiters
-
-**Source:** https://www.gem.com/resource/email-outreach-2026-benchmarks-for-recruiters-report  
-**Published:** 2026  
-**Data:** 6.2M email sequences, 15.5M messages (2025 Gem platform data)  
-**Best for:** Recruiter outreach sequence structure, send timing, subject line strategy, company-size segmentation
-
 ---
+title: Gem — 2026 Email Outreach Benchmarks for Recruiters
+source: Gem
+year: 2026
+topics: [outreach]
+url: "https://www.gem.com/resource/email-outreach-2026-benchmarks-for-recruiters-report"
+sample_size: "6.2M email sequences, 15.5M messages (2025 Gem platform data)"
+best_for: "Recruiter outreach sequence structure, send timing, subject line strategy, company-size segmentation"
+---
+
+# Gem — 2026 Email Outreach Benchmarks for Recruiters
 
 ## Data Foundation
 

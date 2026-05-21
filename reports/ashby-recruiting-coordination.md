@@ -1,13 +1,17 @@
-# Ashby — Recruiting Coordination Report
-
-**Source:** ashbyhq.com/talent-trends-report  
-**Published:** October 22, 2024  
-**Author:** Kevin Connolly, Product & Data  
-**Data:** 2.8M candidates with interviews; 5.1M+ interview events  
-**Period:** Q1 2020 – Q2 2024  
-**Best for:** Coordinator staffing benchmarks, scheduling speed, scorecard submission rates, direct booking impact
-
 ---
+title: Ashby — Recruiting Coordination Report
+source: Ashby
+year: 2024
+published: "2024-10-22"
+topics: [coordination]
+author: "Kevin Connolly, Product & Data"
+data_period_start: "2020-01"
+data_period_end: "2024-12"
+sample_size: "2.8M candidates with interviews; 5.1M+ interview events"
+best_for: "Coordinator staffing benchmarks, scheduling speed, scorecard submission rates, direct booking impact"
+---
+
+# Ashby — Recruiting Coordination Report
 
 ## Coordinator Staffing Trends
 

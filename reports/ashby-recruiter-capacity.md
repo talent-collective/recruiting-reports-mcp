@@ -1,11 +1,15 @@
-# Ashby — What Is a Recruiter's Capacity?
-
-**Source:** ashbyhq.com/talent-trends-report  
-**Data:** 26M+ interactions; 100K jobs  
-**Period:** November 2024 – August 2025  
-**Best for:** Recruiter and coordinator capacity benchmarks, company-size comparison, peak load patterns
-
 ---
+title: "Ashby — What Is a Recruiter's Capacity?"
+source: Ashby
+year: 2025
+topics: [coordination]
+data_period_start: "2024-01"
+data_period_end: "2025-12"
+sample_size: "26M+ interactions; 100K jobs"
+best_for: "Recruiter and coordinator capacity benchmarks, company-size comparison, peak load patterns"
+---
+
+# Ashby — What Is a Recruiter's Capacity?
 
 ## Capacity Benchmarks (90th Percentile = Peak Capacity)
 

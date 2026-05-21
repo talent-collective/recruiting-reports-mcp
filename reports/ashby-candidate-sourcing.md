@@ -1,11 +1,15 @@
-# Ashby — Candidate Sourcing Report
-
-**Source:** ashbyhq.com/talent-trends-report  
-**Data:** 500K+ email sequences  
-**Period:** January 2022 – January 2024  
-**Best for:** Sourcing email benchmarks, sequence structure, AI personalization lift, role-by-role sourcing patterns
-
 ---
+title: Ashby — Candidate Sourcing Report
+source: Ashby
+year: 2024
+topics: [sourcing, outreach]
+data_period_start: "2022-01"
+data_period_end: "2024-12"
+sample_size: "500K+ email sequences"
+best_for: "Sourcing email benchmarks, sequence structure, AI personalization lift, role-by-role sourcing patterns"
+---
+
+# Ashby — Candidate Sourcing Report
 
 ## Core Email Benchmarks
 

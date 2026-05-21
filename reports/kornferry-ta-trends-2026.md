@@ -1,12 +1,15 @@
-# Korn Ferry — TA Trends 2026: Human–AI Power Couple
-
-**Source:** https://www.kornferry.com/insights/featured-topics/talent-recruitment-articles/ai-in-recruitment-trends  
-**Published:** October 28, 2025 (12th Annual Report)  
-**Data:** 1,674 global talent leaders + 230 Korn Ferry talent experts surveyed  
-**Period:** Survey conducted for 2026 outlook  
-**Best for:** AI adoption in TA, autonomous agent trends, office mandate impact, critical skills priorities, TA strategic positioning
-
 ---
+title: "Korn Ferry — TA Trends 2026: Human–AI Power Couple"
+source: Korn Ferry
+year: 2025
+published: "2025-10-28"
+topics: [startup-hiring, executive-priorities, ai-tools, ai-adoption]
+url: "https://www.kornferry.com/insights/featured-topics/talent-recruitment-articles/ai-in-recruitment-trends"
+sample_size: "1,674 global talent leaders + 230 Korn Ferry talent experts surveyed"
+best_for: "AI adoption in TA, autonomous agent trends, office mandate impact, critical skills priorities, TA strategic positioning"
+---
+
+# Korn Ferry — TA Trends 2026: Human–AI Power Couple
 
 ## Methodology
 

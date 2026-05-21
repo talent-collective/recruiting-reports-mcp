@@ -1,8 +1,14 @@
+---
+title: LinkedIn Future of Recruiting 2025
+source: LinkedIn
+year: 2024
+published: "2024-09-01"
+topics: [ai-adoption, ai-tools, sourcing, executive-priorities]
+url: "https://business.linkedin.com/hire/resources/future-of-recruiting"
+sample_size: "1,271 recruiting professionals in management roles or higher (1,019 corporate, 252 staffing); billions of data points from 1B+ LinkedIn members across 200+ countries"
+---
+
 # LinkedIn Future of Recruiting 2025
-**Source:** LinkedIn
-**Published:** 2025 (survey conducted September 2024)
-**Data:** 1,271 recruiting professionals in management roles or higher (1,019 corporate, 252 staffing); billions of data points from 1B+ LinkedIn members across 200+ countries
-**URL:** https://business.linkedin.com/hire/resources/future-of-recruiting
 
 ## Methodology
 Survey of 1,271 recruiting professionals in management roles or higher across 23 countries in 4 languages, conducted September 2024. Supplemented with LinkedIn platform data from 1B+ members across 200+ countries using 12-month rolling comparisons.

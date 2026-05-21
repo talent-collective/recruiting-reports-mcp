@@ -1,8 +1,14 @@
+---
+title: Bullhorn — GRID 2025 Talent Trends Report
+source: Bullhorn
+year: 2025
+published: "2025-06-01"
+topics: [labor-market, sourcing, ai-adoption]
+url: "https://www.bullhorn.com/grid/grid-2025-talent-trends-report/"
+sample_size: "2,766 respondents who worked with recruitment firms in past 3 years; global coverage across North America, UK/Ireland, DACH, Benelux, APAC"
+---
+
 # Bullhorn — GRID 2025 Talent Trends Report
-**Source:** Bullhorn
-**Published:** 2025 (15th annual edition, survey conducted June-July 2025)
-**Data:** 2,766 respondents who worked with recruitment firms in past 3 years; global coverage across North America, UK/Ireland, DACH, Benelux, APAC
-**URL:** https://www.bullhorn.com/grid/grid-2025-talent-trends-report/
 
 ## Methodology
 Online survey of 2,766 respondents via third-party service (confidential responses), conducted June-July 2025. Covers permanent placement, temp/contract/SOW models across all firm sizes. Supplemented by 5 qualitative industry professional interviews.

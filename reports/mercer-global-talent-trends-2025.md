@@ -1,8 +1,13 @@
+---
+title: Mercer — Global Talent Trends 2024-2025
+source: Mercer
+year: 2025
+topics: [labor-market, executive-priorities, ai-adoption]
+url: "https://www.mercer.com/insights/people-strategy/future-of-work/global-talent-trends/"
+sample_size: "Nearly 12,000 respondents including executives, HR leaders, employees, and investors across 16 geographies and 16 industries"
+---
+
 # Mercer — Global Talent Trends 2024-2025
-**Source:** Mercer
-**Published:** 2025
-**Data:** Nearly 12,000 respondents including executives, HR leaders, employees, and investors across 16 geographies and 16 industries
-**URL:** https://www.mercer.com/insights/people-strategy/future-of-work/global-talent-trends/
 
 ## Methodology
 Annual survey of approximately 12,000 respondents including business executives, HR leaders, employees, and investors. 16 geographies and 16 industries represented. Supplemented by a Pulse survey of 1,800 HR leaders across 24 key markets.

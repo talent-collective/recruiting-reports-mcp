@@ -1,8 +1,14 @@
+---
+title: "Phenom — State of AI & Automation for HR: 2026 Benchmarks Report"
+source: Phenom
+year: 2025
+published: "2025-12-16"
+topics: [ai-tools, ai-adoption, executive-priorities]
+url: "https://www.phenom.com/press-release/ai-automation-phenom-report-hiring"
+sample_size: Nearly 500 organizations across 12+ industries; supplemented by survey of 100+ HR professionals
+---
+
 # Phenom — State of AI & Automation for HR: 2026 Benchmarks Report
-**Source:** Phenom
-**Published:** December 16, 2025
-**Data:** Nearly 500 organizations across 12+ industries; supplemented by survey of 100+ HR professionals
-**URL:** https://www.phenom.com/press-release/ai-automation-phenom-report-hiring
 
 ## Methodology
 Proprietary AI & Automation Maturity Model framework scoring organizations from Level 0 to Level 5 across two dimensions: Intelligence and Automation. Nearly 500 organizations evaluated across healthcare, manufacturing, financial services, transportation, pharmaceuticals, consumer goods, restaurants, hotels & travel, professional services, energy & utilities, and government.
