@@ -103,6 +103,14 @@ function searchAcrossReports(query) {
   return `# Results for '${query}' (${results.length} report(s))\n\n${results.join("\n\n---\n\n")}`;
 }
 
+// ── Usage logging ─────────────────────────────────────────────────────────────
+
+function log(tool, params) {
+  const ts = new Date().toISOString();
+  const detail = Object.entries(params).map(([k, v]) => `${k}="${v}"`).join(" ");
+  console.error(`[usage] ${ts} tool=${tool} ${detail}`);
+}
+
 // ── Server setup ──────────────────────────────────────────────────────────────
 
 const server = new McpServer({
@@ -116,19 +124,15 @@ MANDATORY BEHAVIOR — always ask these two clarifying questions BEFORE sharing 
    The knowledge base spans 2015–2026. Year context is critical — a metric like "time-to-fill" was 52 days in 2014, 42 days in 2015–2022, and 63.5 days in 2026. Giving the wrong year gives the wrong answer.
    Ask: "What year or time period are you focused on? Or would you like to see how this metric has trended over time?"
 
-2. **What stage of the recruiting funnel or area are you focused on?**
-   Reports cover very different ground. Prompt the user to specify, for example:
-   - Sourcing / outreach / pipeline top-of-funnel
-   - Screening / interviews / assessment
-   - Offers / offer acceptance rates
-   - Candidate experience / NPS
-   - Recruiter productivity / capacity / workload
-   - Time-to-fill / cost-per-hire / recruiting ops
-   - AI in recruiting / technology adoption
-   - DEI / diversity hiring
-   - Employer brand / job seeker behavior
-   - Workforce trends / future of work / macro talent market
-   Ask: "Which part of the recruiting process or which metric are you focused on?"
+2. **What is the company's funding stage?**
+   Benchmarks vary significantly by company size and stage. Ask which applies:
+   - Pre-seed / Seed
+   - Series A
+   - Series B
+   - Series C+
+   - Late-stage / Pre-IPO
+   - Public company / Enterprise
+   Ask: "What funding stage is the company at? This helps me pull the most relevant benchmarks."
 
 Only after getting this context should you search reports and share data. If the user's question is already specific enough on both dimensions, you may proceed — but confirm your interpretation before answering.
 
@@ -163,9 +167,10 @@ server.tool(
   "list_reports",
   "List all available 2026 recruiting industry reports with a summary of what data each covers.",
   {},
-  async () => ({
-    content: [{ type: "text", text: readIndex() }],
-  })
+  async () => {
+    log("list_reports", {});
+    return { content: [{ type: "text", text: readIndex() }] };
+  }
 );
 
 server.tool(
@@ -173,6 +178,7 @@ server.tool(
   "Read the full content of a specific report. Use list_reports first to see available names.",
   { name: z.string().describe("Filename stem, e.g. 'ashby-startup-hiring-2026'") },
   async ({ name }) => {
+    log("read_report", { name });
     const reports = allReports();
     const text = reports[name]
       ? readFileSync(reports[name], "utf-8")
@@ -185,18 +191,20 @@ server.tool(
   "search_reports",
   "Search across all reports for a keyword, metric, or topic. Returns matching excerpts with context.",
   { query: z.string().describe("Search term, e.g. 'time-to-fill', 'AI adoption', 'referral'") },
-  async ({ query }) => ({
-    content: [{ type: "text", text: searchAcrossReports(query) }],
-  })
+  async ({ query }) => {
+    log("search_reports", { query });
+    return { content: [{ type: "text", text: searchAcrossReports(query) }] };
+  }
 );
 
 server.tool(
   "get_stat",
   "Look up a specific benchmark stat or metric across all reports. Returns all mentions with their source.",
   { metric: z.string().describe("Metric to look up, e.g. 'hires per recruiter', 'candidate NPS'") },
-  async ({ metric }) => ({
-    content: [{ type: "text", text: searchAcrossReports(metric) }],
-  })
+  async ({ metric }) => {
+    log("get_stat", { metric });
+    return { content: [{ type: "text", text: searchAcrossReports(metric) }] };
+  }
 );
 
 server.tool(
@@ -204,6 +212,7 @@ server.tool(
   "Find direct quotes from the reports. Optionally filter by a keyword or topic. Returns each quote with its source report and attribution context.",
   { filter: z.string().optional().describe("Optional keyword to narrow results, e.g. 'AI', 'candidate experience'. Omit to return all quotes.") },
   async ({ filter }) => {
+    log("search_quotes", { filter: filter ?? "(all)" });
     const hits = extractQuotes(filter);
     if (hits.length === 0) {
       const scope = filter ? `matching '${filter}'` : "in any report";
