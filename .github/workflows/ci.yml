@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm test
+      - name: Verify reports/00-INDEX.md is up to date
+        run: |
+          npm run build-index
+          if ! git diff --exit-code reports/00-INDEX.md; then
+            echo "::error::reports/00-INDEX.md is out of date. Run 'npm run build-index' locally and commit the result."
+            exit 1
+          fi
