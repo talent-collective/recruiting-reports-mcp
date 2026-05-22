@@ -299,6 +299,9 @@ function buildInstructions() {
   const sources = [...new Set(Object.values(reports).map(r => r.frontmatter.source).filter(Boolean))].sort();
   const years = [...new Set(Object.values(reports).map(r => r.frontmatter.year).filter(Boolean))].sort();
   const yearRange = years.length ? `${years[0]}–${years[years.length - 1]}` : "";
+  const topics = [...new Set(
+    Object.values(reports).flatMap(r => r.frontmatter.topics || [])
+  )].sort();
 
   return `You have access to ${count} recruiting industry benchmark reports spanning ${yearRange} from ${sources.join(", ")}.
 
@@ -320,12 +323,20 @@ MANDATORY BEHAVIOR — always ask these two clarifying questions BEFORE sharing 
 
 Only after getting this context should you search reports and share data. If the user's question is already specific enough on both dimensions, you may proceed — but confirm your interpretation before answering.
 
-Tools:
-- list_reports: master index with every report grouped by source.
-- filter_reports: structured filter by source / year / year range / topic — use this when the user asks for a slice ("everything from Ashby 2024", "all AI-adoption reports").
-- read_report: full text of a single report.
-- search_reports / get_stat: keyword search across all reports.
-- search_quotes: extract direct quotes, optionally filtered by keyword.`;
+TOOL SELECTION — these two are easy to confuse:
+- filter_reports returns the LIST of reports matching structured filters (source, year, topic tag). Use it for "WHICH reports cover X?" — e.g. "all Ashby reports from 2024", "every report about AI adoption", "what's in here from 2026?". It does not return report content.
+- search_reports returns EXCERPTS of report body text matching a keyword. Use it for "WHAT do the reports say about X?" — e.g. "what's the average time-to-fill?", "find quotes about ghost jobs", "how does Gem describe outreach reply rates?".
+
+Typical flow: filter_reports → narrow the set → read_report for full text, or search_reports for cross-report excerpts. If the user asks a question that combines both ("what do the 2026 reports say about AI?"), use filter_reports first to identify them, then search_reports.
+
+Available topic tags for filter_reports: ${topics.join(", ")}.
+Available sources for filter_reports: ${sources.join(", ")}.
+
+Other tools:
+- list_reports: master index with every report grouped by source. Use when the user wants to browse.
+- read_report: full text of a single report (by filename stem, e.g. 'ashby-startup-hiring-2026').
+- search_quotes: extract blockquote-style direct quotes, optionally filtered by keyword.
+- get_stat: alias of search_reports phrased as a metric lookup.`;
 }
 
 // ── Server setup ─────────────────────────────────────────────────────────────
@@ -384,8 +395,8 @@ server.tool(
 
 server.tool(
   "search_reports",
-  "Search across all reports for a keyword, metric, or topic. Returns matching excerpts with context.",
-  { query: z.string().describe("Search term, e.g. 'time-to-fill', 'AI adoption', 'referral'") },
+  "Full-text keyword search across all report bodies (and titles/authors/best-for blurbs from frontmatter). Returns matching excerpts with surrounding line context. Use this when the user wants the actual numbers, quotes, or text from inside reports (e.g. 'what does Gem say about reply rates?', 'find mentions of ghost jobs'). For 'which reports cover topic X' or 'show me all reports from source Y / year Z', use filter_reports first.",
+  { query: z.string().describe("Keyword or short phrase as it would literally appear in the report text, e.g. 'time-to-fill', 'hires per recruiter', 'ghost job'.") },
   async ({ query }) => {
     log("search_reports", { query });
     return { content: [{ type: "text", text: searchAcrossReports(query) }] };
@@ -394,8 +405,8 @@ server.tool(
 
 server.tool(
   "get_stat",
-  "Look up a specific benchmark stat or metric across all reports. Returns all mentions with their source.",
-  { metric: z.string().describe("Metric to look up, e.g. 'hires per recruiter', 'candidate NPS'") },
+  "Alias of search_reports phrased as a metric lookup — looks up where a specific benchmark stat or metric appears across all reports. Returns excerpts with context.",
+  { metric: z.string().describe("Metric phrase as it would appear in the text, e.g. 'hires per recruiter', 'candidate NPS', 'offer acceptance rate'.") },
   async ({ metric }) => {
     log("get_stat", { metric });
     return { content: [{ type: "text", text: searchAcrossReports(metric) }] };
@@ -422,13 +433,13 @@ server.tool(
 
 server.tool(
   "filter_reports",
-  "Filter reports structurally by source, publication year, year range, or topic. Use this when the user wants a slice of the knowledge base (e.g. 'all Ashby reports from 2024', 'every report about AI adoption') before drilling in with read_report or search_reports.",
+  "Return the LIST of reports matching structured filters (source, year, year_min/year_max, topic). Does NOT return report content — it tells you WHICH reports exist for a slice. Use for 'which reports cover X?', 'all reports from Y', 'everything published in 2026'. Then use read_report to read one, or search_reports to query the text of the narrowed set. The `topic` argument must be one of the canonical topic tags listed in the server instructions — it's not a free-form keyword. For free-form keywords, use search_reports instead.",
   {
-    source:   z.string().optional().describe("Canonical source name. Case-insensitive substring match (e.g. 'Ashby', 'gem', 'LinkedIn')."),
+    source:   z.string().optional().describe("Canonical source name. Case-insensitive substring match (e.g. 'Ashby', 'gem', 'LinkedIn'). See server instructions for the full source list."),
     year:     z.number().int().optional().describe("Exact publication year, e.g. 2026."),
     year_min: z.number().int().optional().describe("Minimum publication year (inclusive)."),
     year_max: z.number().int().optional().describe("Maximum publication year (inclusive)."),
-    topic:    z.string().optional().describe("Topic tag, e.g. 'time-to-fill', 'ai-adoption', 'source-of-hire'."),
+    topic:    z.string().optional().describe("One of the canonical topic tags (e.g. 'time-to-fill', 'ai-adoption', 'source-of-hire'). Free-form keywords will not match — use search_reports for those. See server instructions for the full topic list."),
   },
   async (filters) => {
     log("filter_reports", filters);
