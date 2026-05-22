@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talent Collective — Recruiting Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #0a0a0a;
+      --surface:    #141414;
+      --border:     #2a2a2a;
+      --text:       #c8c8c8;
+      --text-strong:#ffffff;
+      --teal:       #4ecdc4;
+      --teal-dark:  #3aada5;
+      --muted:      #555555;
+      --error:      #ff6b6b;
+      --font:       'Space Mono', 'Courier New', monospace;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .app {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ── Header ── */
+    .header {
+      padding: 28px 0 20px;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .logo-icons { font-size: 16px; letter-spacing: 2px; }
+
+    .logo-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-strong);
+      letter-spacing: -0.5px;
+    }
+
+    .header-sub {
+      color: var(--teal);
+      font-size: 11px;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Chat area ── */
+    .chat {
+      flex: 1;
+      overflow-y: auto;
+      padding: 28px 0 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .chat::-webkit-scrollbar { width: 3px; }
+    .chat::-webkit-scrollbar-track { background: transparent; }
+    .chat::-webkit-scrollbar-thumb { background: var(--border); }
+
+    /* ── Empty state ── */
+    .empty {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-top: 8px;
+    }
+
+    .empty-title {
+      color: var(--text-strong);
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .empty-sub {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+
+    .suggestions { display: flex; flex-direction: column; gap: 8px; }
+
+    .suggestion {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 13px;
+      padding: 11px 14px;
+      text-align: left;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+      line-height: 1.4;
+    }
+
+    .suggestion:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+    }
+
+    /* ── Messages ── */
+    .msg-block {
+      border-top: 1px solid var(--border);
+      padding: 24px 0;
+    }
+
+    .msg-block:first-child { border-top: none; padding-top: 0; }
+
+    .msg-user {
+      color: var(--teal);
+      font-weight: 700;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+
+    .msg-user::before { content: '> '; }
+
+    .msg-assistant { color: var(--text); }
+
+    /* Markdown inside assistant messages */
+    .msg-assistant p       { margin-bottom: 12px; }
+    .msg-assistant p:last-child { margin-bottom: 0; }
+    .msg-assistant strong  { color: var(--text-strong); font-weight: 700; }
+    .msg-assistant em      { font-style: italic; }
+    .msg-assistant code    { color: var(--teal); background: var(--surface); padding: 1px 5px; font-family: var(--font); font-size: 13px; }
+    .msg-assistant h2      { color: var(--text-strong); font-size: 14px; font-weight: 700; margin: 20px 0 8px; }
+    .msg-assistant h3      { color: var(--teal); font-size: 13px; font-weight: 700; margin: 16px 0 6px; }
+    .msg-assistant ul      { margin: 4px 0 12px 18px; }
+    .msg-assistant ol      { margin: 4px 0 12px 18px; }
+    .msg-assistant li      { margin-bottom: 4px; }
+    .msg-assistant hr      { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+    .msg-assistant table   { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 13px; }
+    .msg-assistant th      { color: var(--text-strong); border-bottom: 1px solid var(--border); padding: 6px 12px 6px 0; text-align: left; font-weight: 700; }
+    .msg-assistant td      { border-bottom: 1px solid var(--border); padding: 6px 12px 6px 0; color: var(--text); }
+    .msg-assistant tr:last-child td { border-bottom: none; }
+
+    /* ── Thinking dots ── */
+    .thinking { color: var(--muted); font-size: 13px; padding: 4px 0; }
+    .dot { display: inline-block; animation: blink 1.4s infinite; }
+    .dot:nth-child(2) { animation-delay: 0.2s; }
+    .dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes blink { 0%,80%,100%{opacity:0} 40%{opacity:1} }
+
+    /* ── Input area ── */
+    .input-area {
+      border-top: 1px solid var(--border);
+      padding: 16px 0 24px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+      flex-shrink: 0;
+    }
+
+    textarea {
+      flex: 1;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-strong);
+      font-family: var(--font);
+      font-size: 14px;
+      line-height: 1.5;
+      padding: 11px 14px;
+      resize: none;
+      outline: none;
+      min-height: 44px;
+      max-height: 160px;
+      transition: border-color 0.15s;
+    }
+
+    textarea:focus { border-color: var(--teal); }
+    textarea::placeholder { color: var(--muted); }
+
+    .send-btn {
+      background: var(--teal);
+      color: #000;
+      border: none;
+      font-family: var(--font);
+      font-weight: 700;
+      font-size: 13px;
+      padding: 0 20px;
+      height: 44px;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background 0.15s;
+    }
+
+    .send-btn:hover:not(:disabled) { background: var(--teal-dark); }
+    .send-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    /* ── Error ── */
+    .error-msg {
+      color: var(--error);
+      font-size: 13px;
+      padding: 12px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 560px) {
+      .app { padding: 0 16px; }
+      .logo-name { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+
+  <header class="header">
+    <div class="logo-row">
+      <span class="logo-icons">👤🤖</span>
+      <span class="logo-name">Talent Collective</span>
+    </div>
+    <div class="header-sub">recruiting intelligence &nbsp;//&nbsp; 40 reports &nbsp;//&nbsp; 2015–2026</div>
+  </header>
+
+  <div class="chat" id="chat"></div>
+
+  <div class="input-area">
+    <textarea id="input" placeholder="ask a recruiting question..." rows="1"></textarea>
+    <button class="send-btn" id="send-btn">ask →</button>
+  </div>
+
+</div>
+
+<script>
+const SUGGESTIONS = [
+  "What's the average time-to-fill for a Series A startup in 2024?",
+  "How many hires per recruiter should a Series B company expect?",
+  "What's a good offer acceptance rate benchmark for early-stage startups?",
+  "How has the global talent shortage changed from 2015 to 2024?",
+];
+
+let messages = [];
+let loading  = false;
+
+const chatEl  = document.getElementById('chat');
+const inputEl = document.getElementById('input');
+const sendBtn = document.getElementById('send-btn');
+
+// ── Auto-resize textarea ──────────────────────────────────────────
+inputEl.addEventListener('input', resize);
+function resize() {
+  inputEl.style.height = 'auto';
+  inputEl.style.height = Math.min(inputEl.scrollHeight, 160) + 'px';
+}
+
+// ── Enter to send ─────────────────────────────────────────────────
+inputEl.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
+});
+sendBtn.addEventListener('click', send);
+
+// ── Helpers ───────────────────────────────────────────────────────
+function esc(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function inline(s) {
+  return s
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g,     '<em>$1</em>')
+    .replace(/`(.+?)`/g,       '<code>$1</code>');
+}
+
+function renderMarkdown(raw) {
+  const lines  = raw.split('\n');
+  const out    = [];
+  let inList   = false;
+  let inPara   = false;
+
+  function closePara()  { if (inPara)  { out.push('</p>');  inPara  = false; } }
+  function closeList()  { if (inList)  { out.push('</ul>'); inList  = false; } }
+  function closeBlocks(){ closePara(); closeList(); }
+
+  for (const raw of lines) {
+    const line = raw.trimEnd();
+
+    if (line.startsWith('## ')) {
+      closeBlocks();
+      out.push(`<h2>${inline(esc(line.slice(3)))}</h2>`);
+    } else if (line.startsWith('### ')) {
+      closeBlocks();
+      out.push(`<h3>${inline(esc(line.slice(4)))}</h3>`);
+    } else if (/^[-•\*] /.test(line)) {
+      closePara();
+      if (!inList) { out.push('<ul>'); inList = true; }
+      out.push(`<li>${inline(esc(line.slice(2)))}</li>`);
+    } else if (/^\d+\. /.test(line)) {
+      closePara();
+      if (!inList) { out.push('<ol>'); inList = true; } // simplified: reuse flag
+      out.push(`<li>${inline(esc(line.replace(/^\d+\. /, '')))}</li>`);
+    } else if (line === '---' || line === '***') {
+      closeBlocks();
+      out.push('<hr>');
+    } else if (line === '') {
+      closeBlocks();
+    } else if (line.startsWith('|')) {
+      // simple table row passthrough
+      closeBlocks();
+      const cells = line.split('|').filter((_,i,a) => i>0 && i<a.length-1);
+      if (line.includes('---')) {
+        // separator row — skip
+      } else {
+        const tag = cells.some(c => c.includes('**')) ? 'th' : 'td';
+        out.push('<tr>' + cells.map(c => `<${tag}>${inline(esc(c.trim()))}</${tag}>`).join('') + '</tr>');
+      }
+    } else {
+      closeList();
+      if (!inPara) { out.push('<p>'); inPara = true; }
+      out.push(inline(esc(line)));
+    }
+  }
+  closeBlocks();
+
+  // Wrap table rows
+  let html = out.join('\n');
+  html = html.replace(/(<tr>[\s\S]+?<\/tr>\n?)+/g, m => `<table>${m}</table>`);
+  return html;
+}
+
+// ── Render ────────────────────────────────────────────────────────
+function showEmpty() {
+  chatEl.innerHTML = `
+    <div class="empty">
+      <div class="empty-title">recruiting intelligence</div>
+      <div class="empty-sub">ask anything about hiring benchmarks, market data, or talent trends. i'll ask for year and funding stage before diving into the numbers.</div>
+      <div class="suggestions">
+        ${SUGGESTIONS.map(s => `<button class="suggestion">${esc(s)}</button>`).join('')}
+      </div>
+    </div>`;
+
+  chatEl.querySelectorAll('.suggestion').forEach(btn => {
+    btn.addEventListener('click', () => {
+      inputEl.value = btn.textContent;
+      resize();
+      send();
+    });
+  });
+}
+
+function renderAll(streamText) {
+  if (messages.length === 0 && streamText == null) { showEmpty(); return; }
+
+  let html = '';
+  for (const m of messages) {
+    if (m.role === 'user') {
+      html += `<div class="msg-block"><div class="msg-user">${esc(m.content)}</div></div>`;
+    } else {
+      html += `<div class="msg-block"><div class="msg-assistant">${renderMarkdown(m.content)}</div></div>`;
+    }
+  }
+
+  if (streamText != null) {
+    if (streamText === '') {
+      html += `<div class="msg-block"><div class="thinking"><span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></div></div>`;
+    } else {
+      html += `<div class="msg-block"><div class="msg-assistant">${renderMarkdown(streamText)}</div></div>`;
+    }
+  }
+
+  chatEl.innerHTML = html;
+  chatEl.scrollTop = chatEl.scrollHeight;
+}
+
+// ── Send ──────────────────────────────────────────────────────────
+async function send() {
+  const text = inputEl.value.trim();
+  if (!text || loading) return;
+
+  loading = true;
+  sendBtn.disabled = true;
+  inputEl.value = '';
+  inputEl.style.height = 'auto';
+
+  messages.push({ role: 'user', content: text });
+  renderAll('');
+
+  try {
+    const res = await fetch('/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages }),
+    });
+
+    if (!res.ok) {
+      const msg = await res.text();
+      throw new Error(msg || `HTTP ${res.status}`);
+    }
+
+    const reader  = res.body.getReader();
+    const decoder = new TextDecoder();
+    let   reply   = '';
+    let   buffer  = '';
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split('\n');
+      buffer = lines.pop();
+
+      for (const line of lines) {
+        if (!line.startsWith('data: ')) continue;
+        const data = line.slice(6).trim();
+        if (data === '[DONE]') break;
+        try {
+          const { text } = JSON.parse(data);
+          reply += text;
+          renderAll(reply);
+        } catch {}
+      }
+    }
+
+    messages.push({ role: 'assistant', content: reply });
+    renderAll(null);
+
+  } catch (err) {
+    messages.pop();
+    renderAll(null);
+    chatEl.insertAdjacentHTML('beforeend',
+      `<div class="error-msg">error: ${esc(err.message)}</div>`);
+  }
+
+  loading = false;
+  sendBtn.disabled = false;
+  inputEl.focus();
+  chatEl.scrollTop = chatEl.scrollHeight;
+}
+
+// ── Init ──────────────────────────────────────────────────────────
+showEmpty();
+inputEl.focus();
+</script>
+</body>
+</html>

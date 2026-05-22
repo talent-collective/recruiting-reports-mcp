@@ -17,6 +17,7 @@ import { readFileSync, readdirSync, existsSync } from "fs";
 import { join, dirname, basename, extname } from "path";
 import { fileURLToPath } from "url";
 import { createServer } from "http";
+import Anthropic from "@anthropic-ai/sdk";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = __dirname;
@@ -101,6 +102,37 @@ function searchAcrossReports(query) {
     return `No results found for '${query}' across ${Object.keys(reports).length} reports.`;
   }
   return `# Results for '${query}' (${results.length} report(s))\n\n${results.join("\n\n---\n\n")}`;
+}
+
+// ── Claude API (webapp) ───────────────────────────────────────────────────────
+
+const anthropic = process.env.ANTHROPIC_API_KEY
+  ? new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
+  : null;
+
+const CHAT_SYSTEM = `You are the Talent Collective Recruiting Intelligence assistant — built by former Heads of Talent at Vercel, Airbnb, DoorDash, and Netflix.
+
+You have access to 40 recruiting industry benchmark reports spanning 2015–2026. Use the data below to answer questions with specific numbers. Always cite which report your data comes from.
+
+MANDATORY: Before sharing specific benchmarks, always confirm two things:
+1. What year or time period they care about (data spans 2015–2026)
+2. What funding stage the company is at: Pre-seed/Seed, Series A, Series B, Series C+, Late-stage, or Enterprise
+
+If the user hasn't specified both, ask before answering. If they have, briefly confirm then give the data. Be direct. Lead with numbers. No filler.`;
+
+function parseBody(req) {
+  return new Promise((resolve, reject) => {
+    let body = '';
+    req.on('data', chunk => body += chunk.toString());
+    req.on('end', () => { try { resolve(JSON.parse(body)); } catch (e) { reject(e); } });
+    req.on('error', reject);
+  });
+}
+
+function buildContext(query) {
+  const index   = readIndex();
+  const results = query ? searchAcrossReports(query) : '';
+  return `REPORT INDEX:\n${index}\n\nRELEVANT DATA:\n${results}`;
 }
 
 // ── Usage logging ─────────────────────────────────────────────────────────────
@@ -238,6 +270,62 @@ if (mode === "stdio") {
     if (req.url === "/health") {
       res.writeHead(200);
       res.end("ok");
+      return;
+    }
+
+    // ── Webapp ──────────────────────────────────────────────────────
+    if (req.method === "GET" && (req.url === "/" || req.url === "/index.html")) {
+      try {
+        const html = readFileSync(join(ROOT, "public", "index.html"), "utf-8");
+        res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+        res.end(html);
+      } catch {
+        res.writeHead(404); res.end("Not found");
+      }
+      return;
+    }
+
+    if (req.method === "POST" && req.url === "/chat") {
+      if (!anthropic) {
+        res.writeHead(503, { "Content-Type": "text/plain" });
+        res.end("ANTHROPIC_API_KEY is not configured");
+        return;
+      }
+      try {
+        const { messages } = await parseBody(req);
+        const lastUser = [...messages].reverse().find(m => m.role === "user")?.content ?? "";
+        const context  = buildContext(lastUser);
+        const system   = `${CHAT_SYSTEM}\n\n${context}`;
+
+        res.writeHead(200, {
+          "Content-Type":  "text/event-stream",
+          "Cache-Control": "no-cache",
+          "Connection":    "keep-alive",
+        });
+
+        const stream = anthropic.messages.stream({
+          model:      "claude-sonnet-4-6",
+          max_tokens: 2048,
+          system,
+          messages,
+        });
+
+        for await (const event of stream) {
+          if (event.type === "content_block_delta" && event.delta.type === "text_delta") {
+            res.write(`data: ${JSON.stringify({ text: event.delta.text })}\n\n`);
+          }
+        }
+
+        res.write("data: [DONE]\n\n");
+        res.end();
+        log("chat", { query: lastUser.slice(0, 100) });
+
+      } catch (err) {
+        if (!res.headersSent) {
+          res.writeHead(500, { "Content-Type": "text/plain" });
+          res.end(err.message);
+        }
+      }
       return;
     }
     if (req.method === "POST" && req.url === "/mcp") {
