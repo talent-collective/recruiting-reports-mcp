@@ -333,113 +333,122 @@ Available sources for filter_reports: ${sources.join(", ")}.`;
 }
 
 // ── Server setup ──────────────────────────────────────────────────────────────
+// createMcpServer() must be called per HTTP request — McpServer can only be
+// connected to one transport at a time, so reusing a singleton across concurrent
+// requests causes "Already connected to a transport" crashes.
 
-const server = new McpServer({
-  name: "Recruiting Reports",
-  version: "1.1.0",
-  instructions: buildInstructions(),
-});
+function createMcpServer() {
+  const s = new McpServer({
+    name: "Recruiting Reports",
+    version: "1.1.0",
+    instructions: buildInstructions(),
+  });
 
-server.resource(
-  "index",
-  "reports://index",
-  { description: "Master index of all recruiting benchmark reports, grouped by source." },
-  async () => ({
-    contents: [{ uri: "reports://index", text: readWrappedIndex(), mimeType: "text/markdown" }],
-  })
-);
+  s.resource(
+    "index",
+    "reports://index",
+    { description: "Master index of all recruiting benchmark reports, grouped by source." },
+    async () => ({
+      contents: [{ uri: "reports://index", text: readWrappedIndex(), mimeType: "text/markdown" }],
+    })
+  );
 
-server.resource(
-  "report",
-  new ResourceTemplate("reports://{name}", { list: undefined }),
-  { description: "Full content of a specific report by filename stem." },
-  async (uri, { name }) => {
-    const reports = parsedReports();
-    const text = reports[name]
-      ? reports[name].body
-      : `Report '${name}' not found. Available: ${Object.keys(reports).sort().join(", ")}`;
-    return { contents: [{ uri: uri.href, text, mimeType: "text/markdown" }] };
-  }
-);
-
-server.tool(
-  "list_reports",
-  "List all available recruiting industry reports with a summary of what data each covers.",
-  {},
-  async () => {
-    log("list_reports", {});
-    return { content: [{ type: "text", text: readWrappedIndex() }] };
-  }
-);
-
-server.tool(
-  "read_report",
-  "Read the full content of a specific report. Use list_reports first to see available names.",
-  { name: z.string().describe("Filename stem, e.g. 'ashby-startup-hiring-2026'") },
-  async ({ name }) => {
-    log("read_report", { name });
-    const reports = parsedReports();
-    const text = reports[name]
-      ? reports[name].body
-      : `Report '${name}' not found.\n\nAvailable:\n${Object.keys(reports).sort().map(k => `  - ${k}`).join("\n")}`;
-    return { content: [{ type: "text", text }] };
-  }
-);
-
-server.tool(
-  "search_reports",
-  "Full-text keyword search across all report bodies (and titles/authors/best-for blurbs from frontmatter). Returns matching excerpts with surrounding context. Use for topical questions like 'reports about AI adoption' or specific metrics like 'time-to-fill'.",
-  { query: z.string().describe("Keyword or short phrase, e.g. 'time-to-fill', 'hires per recruiter', 'ghost job'.") },
-  async ({ query }) => {
-    log("search_reports", { query });
-    return { content: [{ type: "text", text: searchAcrossReports(query) }] };
-  }
-);
-
-server.tool(
-  "get_stat",
-  "Alias of search_reports phrased as a metric lookup — looks up where a specific benchmark stat appears across all reports. Returns excerpts with context.",
-  { metric: z.string().describe("Metric phrase, e.g. 'hires per recruiter', 'candidate NPS', 'offer acceptance rate'.") },
-  async ({ metric }) => {
-    log("get_stat", { metric });
-    return { content: [{ type: "text", text: searchAcrossReports(metric) }] };
-  }
-);
-
-server.tool(
-  "search_quotes",
-  "Find direct quotes from the reports. Optionally filter by a keyword or topic. Returns each quote with its source report and attribution context.",
-  { filter: z.string().optional().describe("Optional keyword to narrow results, e.g. 'AI', 'candidate experience'. Omit to return all quotes.") },
-  async ({ filter }) => {
-    log("search_quotes", { filter: filter ?? "(all)" });
-    const hits = extractQuotes(filter);
-    if (hits.length === 0) {
-      const scope = filter ? `matching '${filter}'` : "in any report";
-      return { content: [{ type: "text", text: `No quotes found ${scope}.` }] };
+  s.resource(
+    "report",
+    new ResourceTemplate("reports://{name}", { list: undefined }),
+    { description: "Full content of a specific report by filename stem." },
+    async (uri, { name }) => {
+      const reports = parsedReports();
+      const text = reports[name]
+        ? reports[name].body
+        : `Report '${name}' not found. Available: ${Object.keys(reports).sort().join(", ")}`;
+      return { contents: [{ uri: uri.href, text, mimeType: "text/markdown" }] };
     }
-    const header = filter
-      ? `# Quotes matching '${filter}' (${hits.length} found)\n\n`
-      : `# All quotes across reports (${hits.length} found)\n\n`;
-    return { content: [{ type: "text", text: header + hits.join("\n\n---\n\n") }] };
-  }
-);
+  );
 
-server.tool(
-  "filter_reports",
-  "Return the LIST of reports matching structured filters (source, year, year_min/year_max). Does NOT return report content — tells you WHICH reports exist for a slice. Then use read_report to read one, or search_reports to query their text. For topical questions ('about AI'), use search_reports instead.",
-  {
-    source:   z.string().optional().describe("Canonical source name. Case-insensitive substring match (e.g. 'Ashby', 'gem', 'LinkedIn'). See server instructions for the full source list."),
-    year:     z.number().int().optional().describe("Exact publication year, e.g. 2026."),
-    year_min: z.number().int().optional().describe("Minimum publication year (inclusive)."),
-    year_max: z.number().int().optional().describe("Maximum publication year (inclusive)."),
-  },
-  async (filters) => {
-    log("filter_reports", filters);
-    const matches = filterReports(filters);
-    return { content: [{ type: "text", text: renderFilterResults(matches, filters) }] };
-  }
-);
+  s.tool(
+    "list_reports",
+    "List all available recruiting industry reports with a summary of what data each covers.",
+    {},
+    async () => {
+      log("list_reports", {});
+      return { content: [{ type: "text", text: readWrappedIndex() }] };
+    }
+  );
 
+  s.tool(
+    "read_report",
+    "Read the full content of a specific report. Use list_reports first to see available names.",
+    { name: z.string().describe("Filename stem, e.g. 'ashby-startup-hiring-2026'") },
+    async ({ name }) => {
+      log("read_report", { name });
+      const reports = parsedReports();
+      const text = reports[name]
+        ? reports[name].body
+        : `Report '${name}' not found.\n\nAvailable:\n${Object.keys(reports).sort().map(k => `  - ${k}`).join("\n")}`;
+      return { content: [{ type: "text", text }] };
+    }
+  );
+
+  s.tool(
+    "search_reports",
+    "Full-text keyword search across all report bodies (and titles/authors/best-for blurbs from frontmatter). Returns matching excerpts with surrounding context. Use for topical questions like 'reports about AI adoption' or specific metrics like 'time-to-fill'.",
+    { query: z.string().describe("Keyword or short phrase, e.g. 'time-to-fill', 'hires per recruiter', 'ghost job'.") },
+    async ({ query }) => {
+      log("search_reports", { query });
+      return { content: [{ type: "text", text: searchAcrossReports(query) }] };
+    }
+  );
+
+  s.tool(
+    "get_stat",
+    "Alias of search_reports phrased as a metric lookup — looks up where a specific benchmark stat appears across all reports. Returns excerpts with context.",
+    { metric: z.string().describe("Metric phrase, e.g. 'hires per recruiter', 'candidate NPS', 'offer acceptance rate'.") },
+    async ({ metric }) => {
+      log("get_stat", { metric });
+      return { content: [{ type: "text", text: searchAcrossReports(metric) }] };
+    }
+  );
+
+  s.tool(
+    "search_quotes",
+    "Find direct quotes from the reports. Optionally filter by a keyword or topic. Returns each quote with its source report and attribution context.",
+    { filter: z.string().optional().describe("Optional keyword to narrow results, e.g. 'AI', 'candidate experience'. Omit to return all quotes.") },
+    async ({ filter }) => {
+      log("search_quotes", { filter: filter ?? "(all)" });
+      const hits = extractQuotes(filter);
+      if (hits.length === 0) {
+        const scope = filter ? `matching '${filter}'` : "in any report";
+        return { content: [{ type: "text", text: `No quotes found ${scope}.` }] };
+      }
+      const header = filter
+        ? `# Quotes matching '${filter}' (${hits.length} found)\n\n`
+        : `# All quotes across reports (${hits.length} found)\n\n`;
+      return { content: [{ type: "text", text: header + hits.join("\n\n---\n\n") }] };
+    }
+  );
+
+  s.tool(
+    "filter_reports",
+    "Return the LIST of reports matching structured filters (source, year, year_min/year_max). Does NOT return report content — tells you WHICH reports exist for a slice. Then use read_report to read one, or search_reports to query their text. For topical questions ('about AI'), use search_reports instead.",
+    {
+      source:   z.string().optional().describe("Canonical source name. Case-insensitive substring match (e.g. 'Ashby', 'gem', 'LinkedIn'). See server instructions for the full source list."),
+      year:     z.number().int().optional().describe("Exact publication year, e.g. 2026."),
+      year_min: z.number().int().optional().describe("Minimum publication year (inclusive)."),
+      year_max: z.number().int().optional().describe("Maximum publication year (inclusive)."),
+    },
+    async (filters) => {
+      log("filter_reports", filters);
+      const matches = filterReports(filters);
+      return { content: [{ type: "text", text: renderFilterResults(matches, filters) }] };
+    }
+  );
+
+  return s;
+}
+
+// Singleton for stdio mode and tests (never connected to HTTP transport).
+const server = createMcpServer();
 export { server };
 
 // ── Transport ─────────────────────────────────────────────────────────────────
@@ -464,16 +473,18 @@ if (!isMain) {
 
     // ── MCP ───────────────────────────────────────────────────────────────────
     if (req.method === "POST" && req.url === "/mcp") {
+      const s = createMcpServer();
       const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
       res.on("close", () => transport.close());
-      await server.connect(transport);
+      await s.connect(transport);
       await transport.handleRequest(req, res);
       return;
     }
     if ((req.method === "GET" || req.method === "DELETE") && req.url?.startsWith("/mcp")) {
+      const s = createMcpServer();
       const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
       res.on("close", () => transport.close());
-      await server.connect(transport);
+      await s.connect(transport);
       await transport.handleRequest(req, res);
       return;
     }
