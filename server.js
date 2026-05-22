@@ -1,8 +1,9 @@
 /**
- * 2026 Recruiting Reports — MCP Server
+ * Recruiting Reports — MCP Server + Web App
  *
- * Exposes 7 industry recruiting benchmark reports as searchable MCP tools + resources.
- * Run locally with stdio or deploy to Railway/Render for public HTTP access.
+ * Exposes 50+ industry recruiting benchmark reports as searchable MCP tools
+ * and serves a standalone chat webapp backed by the Claude API.
+ * Reports use YAML frontmatter (see CONTRIBUTING.md) for structured filtering.
  *
  * Usage:
  *   node server.js            → HTTP server on port 3000 (or $PORT)
@@ -14,7 +15,7 @@ import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 import { readFileSync, readdirSync, existsSync } from "fs";
-import { join, dirname, basename, extname } from "path";
+import { join, dirname, basename } from "path";
 import { fileURLToPath } from "url";
 import { createServer } from "http";
 import Anthropic from "@anthropic-ai/sdk";
@@ -23,67 +24,112 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = __dirname;
 const REPORTS_DIR = join(ROOT, "reports");
 
-// ── Helpers ───────────────────────────────────────────────────────────────────
+// ── Frontmatter parser ────────────────────────────────────────────────────────
+// Hand-rolled to avoid a js-yaml dependency. Handles the flat scalar/int/array
+// shapes used by this project's schema (see CONTRIBUTING.md). No nested objects,
+// multi-line strings, or anchors needed.
 
-function allReports() {
-  const files = {};
-  // root-level MDs (exclude meta files)
-  const EXCLUDE = new Set(["README", "MEMORY"]);
-  for (const f of readdirSync(ROOT)) {
-    if (f.endsWith(".md")) {
-      const stem = basename(f, ".md");
-      if (!EXCLUDE.has(stem)) files[stem] = join(ROOT, f);
+export function parseFrontmatter(text) {
+  if (!text.startsWith("---\n")) return { frontmatter: {}, body: text };
+  const end = text.indexOf("\n---", 4);
+  if (end === -1) return { frontmatter: {}, body: text };
+  const yaml = text.slice(4, end);
+  const body = text.slice(end + 4).replace(/^\n+/, "");
+  const fm = {};
+  for (const line of yaml.split("\n")) {
+    const m = line.match(/^([a-z_]+):\s*(.*)$/i);
+    if (!m) continue;
+    const [, key, rawVal] = m;
+    const val = rawVal.trim();
+    if (val === "" || val === "null") {
+      fm[key] = null;
+    } else if (val.startsWith("[") && val.endsWith("]")) {
+      fm[key] = val.slice(1, -1)
+        .split(",")
+        .map(s => s.trim().replace(/^["']|["']$/g, ""))
+        .filter(Boolean);
+    } else if (/^-?\d+$/.test(val)) {
+      fm[key] = parseInt(val, 10);
+    } else {
+      fm[key] = val.replace(/^["']|["']$/g, "").replace(/\\"/g, '"');
     }
   }
-  // reports subfolder (skip the index)
+  return { frontmatter: fm, body };
+}
+
+// ── Report discovery + cache ──────────────────────────────────────────────────
+
+const SKIP_AT_ROOT = new Set([
+  "README.md", "CONTRIBUTING.md", "MEMORY.md", "substack-post.md",
+]);
+
+function discoverReportFiles() {
+  const files = {};
+  for (const f of readdirSync(ROOT)) {
+    if (!f.endsWith(".md")) continue;
+    if (SKIP_AT_ROOT.has(f)) continue;
+    files[basename(f, ".md")] = join(ROOT, f);
+  }
   if (existsSync(REPORTS_DIR)) {
     for (const f of readdirSync(REPORTS_DIR)) {
-      if (f.endsWith(".md") && f !== "00-INDEX.md") {
-        const stem = basename(f, ".md");
-        files[stem] = join(REPORTS_DIR, f);
-      }
+      if (!f.endsWith(".md") || f === "00-INDEX.md") continue;
+      files[basename(f, ".md")] = join(REPORTS_DIR, f);
     }
   }
   return files;
 }
 
-function readIndex() {
-  return readFileSync(join(REPORTS_DIR, "00-INDEX.md"), "utf-8");
+let _cache = null;
+export function parsedReports() {
+  if (_cache) return _cache;
+  _cache = {};
+  for (const [name, path] of Object.entries(discoverReportFiles())) {
+    const raw = readFileSync(path, "utf-8");
+    const { frontmatter, body } = parseFrontmatter(raw);
+    // Prepend frontmatter fields so author/best_for/sample_size stay
+    // keyword-searchable alongside body text.
+    const metaLines = [
+      frontmatter.title       && `Title: ${frontmatter.title}`,
+      frontmatter.author      && `Author: ${frontmatter.author}`,
+      frontmatter.best_for    && `Best for: ${frontmatter.best_for}`,
+      frontmatter.sample_size && `Data: ${frontmatter.sample_size}`,
+    ].filter(Boolean).join("\n");
+    const searchText = metaLines ? `${metaLines}\n\n${body}` : body;
+    _cache[name] = { name, path, frontmatter, body, searchText };
+  }
+  return _cache;
 }
 
-// Matches blockquotes (> "...") and inline attributions (Per Name: "...")
+export function _resetCache() { _cache = null; }
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+
 const QUOTE_RE = /^>\s*"(.+)"|"([^"]{30,})"/;
 
-function extractQuotes(filter) {
-  const reports = allReports();
+export function extractQuotes(filter) {
   const f = filter?.toLowerCase();
   const hits = [];
-
-  for (const [name, path] of Object.entries(reports).sort()) {
-    const lines = readFileSync(path, "utf-8").split("\n");
+  for (const [name, report] of Object.entries(parsedReports()).sort()) {
+    const lines = report.body.split("\n");
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
-      if (line.trimStart().startsWith("#")) continue; // skip headings
+      if (line.trimStart().startsWith("#")) continue;
       if (!QUOTE_RE.test(line)) continue;
       if (f && !line.toLowerCase().includes(f)) continue;
-
-      // grab one line of context before for attribution clues
       const context = i > 0 ? lines[i - 1].trim() : "";
       const entry = context ? `${context}\n${line.trim()}` : line.trim();
       hits.push(`**${name}**\n${entry}`);
     }
   }
-
   return hits;
 }
 
-function searchAcrossReports(query) {
-  const reports = allReports();
+export function searchAcrossReports(query) {
   const q = query.toLowerCase();
   const results = [];
-
-  for (const [name, path] of Object.entries(reports).sort()) {
-    const lines = readFileSync(path, "utf-8").split("\n");
+  const reports = parsedReports();
+  for (const [name, report] of Object.entries(reports).sort()) {
+    const lines = report.searchText.split("\n");
     const snippets = [];
     for (let i = 0; i < lines.length; i++) {
       if (lines[i].toLowerCase().includes(q)) {
@@ -97,11 +143,143 @@ function searchAcrossReports(query) {
       results.push(`### ${name}\n\n${snippets.join("\n\n---\n\n")}`);
     }
   }
-
   if (results.length === 0) {
     return `No results found for '${query}' across ${Object.keys(reports).length} reports.`;
   }
   return `# Results for '${query}' (${results.length} report(s))\n\n${results.join("\n\n---\n\n")}`;
+}
+
+export function filterReports({ source, year, year_min, year_max } = {}) {
+  return Object.values(parsedReports()).filter(r => {
+    const fm = r.frontmatter;
+    if (source && (!fm.source || !fm.source.toLowerCase().includes(source.toLowerCase()))) return false;
+    if (year != null && fm.year !== year) return false;
+    if (year_min != null && (fm.year == null || fm.year < year_min)) return false;
+    if (year_max != null && (fm.year == null || fm.year > year_max)) return false;
+    return true;
+  });
+}
+
+function describeFilters({ source, year, year_min, year_max }) {
+  const parts = [];
+  if (source)           parts.push(`source=${source}`);
+  if (year != null)     parts.push(`year=${year}`);
+  if (year_min != null) parts.push(`year_min=${year_min}`);
+  if (year_max != null) parts.push(`year_max=${year_max}`);
+  return parts.length ? parts.join(", ") : "no filters";
+}
+
+function renderFilterResults(matches, filters) {
+  if (matches.length === 0) {
+    const sources = [...new Set(Object.values(parsedReports()).map(r => r.frontmatter.source).filter(Boolean))].sort();
+    return `No reports match (${describeFilters(filters)}).\n\nAvailable sources: ${sources.join(", ")}`;
+  }
+  const rows = matches
+    .sort((a, b) => (b.frontmatter.year || 0) - (a.frontmatter.year || 0) || a.name.localeCompare(b.name))
+    .map(r => {
+      const fm = r.frontmatter;
+      const sample = (fm.sample_size || "").replace(/\|/g, "\\|");
+      return `| ${r.name} | ${fm.title || r.name} | ${fm.source || ""} | ${fm.year ?? ""} | ${sample} |`;
+    })
+    .join("\n");
+  return [
+    `# ${matches.length} report(s) match (${describeFilters(filters)})`,
+    "",
+    "| Name | Title | Source | Year | Sample size |",
+    "|-------|-------|-------|-------|----------|",
+    rows,
+    "",
+    "Use `read_report` with one of these names to read the full report.",
+  ].join("\n");
+}
+
+// ── Index rendering ───────────────────────────────────────────────────────────
+
+export function renderIndex() {
+  const reports = Object.values(parsedReports());
+  const ashby    = reports.filter(r => r.frontmatter.source === "Ashby");
+  const nonAshby = reports.filter(r => r.frontmatter.source !== "Ashby");
+
+  const thisYear = new Date().getFullYear();
+  const FLAGSHIP_RE   = /benchmark|trends report/i;
+  const RANGE_FILE_RE = /\b20\d{2}[‐–-]20\d{2}\b/; // separator required — avoids matching bare 8-digit runs
+  const isHistorical = r =>
+    (r.frontmatter.year || 0) < thisYear || RANGE_FILE_RE.test(basename(r.path));
+
+  const ashbyFlagship    = ashby.filter(r =>  FLAGSHIP_RE.test(r.frontmatter.title || ""));
+  const ashbyDeepDive    = ashby.filter(r => !FLAGSHIP_RE.test(r.frontmatter.title || ""));
+  const historicalNonAshby = nonAshby.filter(isHistorical);
+  const recentNonAshby     = nonAshby.filter(r => !isHistorical(r));
+
+  const core = [...recentNonAshby, ...ashbyFlagship];
+  const sortFn = (a, b) =>
+    (b.frontmatter.year || 0) - (a.frontmatter.year || 0)
+    || (a.frontmatter.source || "").localeCompare(b.frontmatter.source || "")
+    || a.name.localeCompare(b.name);
+  core.sort(sortFn);
+  ashbyDeepDive.sort(sortFn);
+  historicalNonAshby.sort(sortFn);
+
+  const entry = (r, num) => {
+    const fm = r.frontmatter;
+    const lines = [`## ${num}. ${fm.title || r.name}`];
+    lines.push(`**File:** \`${basename(r.path)}\`  `);
+    if (fm.sample_size) lines.push(`**Data:** ${fm.sample_size}  `);
+    if (fm.published)   lines.push(`**Published:** ${fm.published}  `);
+    if (fm.best_for)    lines.push(`**Best for:** ${fm.best_for}`);
+    return lines.join("\n");
+  };
+
+  const today = new Date().toISOString().slice(0, 10);
+  const total = reports.length;
+  const coreMaxYear = Math.max(...core.map(r => r.frontmatter.year || 0));
+  const histYears = historicalNonAshby.map(r => r.frontmatter.year || 0).filter(Boolean);
+  const histRange = histYears.length ? `${Math.min(...histYears)}–${Math.max(...histYears)}` : "";
+  let n = 0;
+  return [
+    `**Compiled:** ${today}`,
+    `**Reports:** ${total} (${core.length} core, ${ashbyDeepDive.length} Ashby deep-dives, ${historicalNonAshby.length} historical)`,
+    "", "---", "",
+    `## CORE REPORTS (${coreMaxYear})`, "",
+    core.map(r => entry(r, ++n)).join("\n\n"),
+    "", "---", "",
+    "## ASHBY DEEP-DIVE REPORTS (multi-year data)", "",
+    ashbyDeepDive.map(r => entry(r, ++n)).join("\n\n"),
+    "", "---", "",
+    `## HISTORICAL REPORTS (${histRange})`, "",
+    historicalNonAshby.map(r => entry(r, ++n)).join("\n\n"),
+  ].join("\n");
+}
+
+export function wrapIndex(rawIndex) {
+  const begin = rawIndex.indexOf("<!-- BEGIN AUTOGENERATED");
+  const end   = rawIndex.indexOf("<!-- END AUTOGENERATED");
+  if (begin === -1 || end === -1) return rawIndex;
+  const beginEnd = rawIndex.indexOf("-->", begin) + 3;
+  return `${rawIndex.slice(0, beginEnd)}\n\n${renderIndex()}\n\n${rawIndex.slice(end)}`;
+}
+
+function readWrappedIndex() {
+  const indexPath = join(REPORTS_DIR, "00-INDEX.md");
+  if (!existsSync(indexPath)) return `# Recruiting Research Reports – Master Index\n\n${renderIndex()}`;
+  return wrapIndex(readFileSync(indexPath, "utf-8"));
+}
+
+// ── Prompt-injection guard ────────────────────────────────────────────────────
+// Report files are third-party data. Strip lines matching common injection
+// patterns before they are embedded into any system prompt (chat or MCP
+// instructions). Applied to both buildContext() and buildInstructions().
+
+const INJECTION_RE = /^\s*(ignore\s+(all\s+)?(previous|prior|above)\s+instructions?|you\s+are\s+now\s+|system\s*:|<\s*\/?\s*(system|instruction|prompt)\s*>)/i;
+
+function sanitizeContent(text) {
+  return text.split("\n").map(line => {
+    if (INJECTION_RE.test(line)) {
+      console.error(`[security] stripped potential injection: ${line.slice(0, 120)}`);
+      return "[content removed]";
+    }
+    return line;
+  }).join("\n");
 }
 
 // ── Claude API (webapp) ───────────────────────────────────────────────────────
@@ -122,16 +300,16 @@ If the user hasn't specified both, ask before answering. If they have, briefly c
 
 function parseBody(req) {
   return new Promise((resolve, reject) => {
-    let body = '';
-    req.on('data', chunk => body += chunk.toString());
-    req.on('end', () => { try { resolve(JSON.parse(body)); } catch (e) { reject(e); } });
-    req.on('error', reject);
+    let body = "";
+    req.on("data", chunk => body += chunk.toString());
+    req.on("end", () => { try { resolve(JSON.parse(body)); } catch (e) { reject(e); } });
+    req.on("error", reject);
   });
 }
 
 function buildContext(query) {
-  const index   = readIndex();
-  const results = query ? searchAcrossReports(query) : '';
+  const index   = sanitizeContent(readWrappedIndex());
+  const results = query ? sanitizeContent(searchAcrossReports(query)) : "";
   return `REPORT INDEX:\n${index}\n\nRELEVANT DATA:\n${results}`;
 }
 
@@ -143,12 +321,21 @@ function log(tool, params) {
   console.error(`[usage] ${ts} tool=${tool} ${detail}`);
 }
 
-// ── Server setup ──────────────────────────────────────────────────────────────
+// ── MCP instructions ──────────────────────────────────────────────────────────
 
-const server = new McpServer({
-  name: "Recruiting Reports",
-  version: "1.0.0",
-  instructions: `You have access to 40 recruiting industry benchmark reports spanning 2015–2026 from Ashby, SHRM, LinkedIn, Deloitte, ManpowerGroup, WEF, Jobvite, Talent Board, Glassdoor, Korn Ferry, PwC, McKinsey, Mercer, iCIMS, CareerBuilder, Indeed, Bersin, Gem, HireVue, and more.
+function buildInstructions() {
+  const reports = parsedReports();
+  const count = Object.keys(reports).length;
+  // sanitizeContent guards against a malicious report's source field value
+  // being injected into the MCP system prompt.
+  const sources = [...new Set(Object.values(reports).map(r => r.frontmatter.source).filter(Boolean))]
+    .map(s => sanitizeContent(s).trim())
+    .filter(Boolean)
+    .sort();
+  const years = [...new Set(Object.values(reports).map(r => r.frontmatter.year).filter(Boolean))].sort();
+  const yearRange = years.length ? `${years[0]}–${years[years.length - 1]}` : "";
+
+  return `You have access to ${count} recruiting industry benchmark reports spanning ${yearRange} from ${sources.join(", ")}.
 
 MANDATORY BEHAVIOR — always ask these two clarifying questions BEFORE sharing any insights, benchmarks, or data:
 
@@ -168,40 +355,52 @@ MANDATORY BEHAVIOR — always ask these two clarifying questions BEFORE sharing 
 
 Only after getting this context should you search reports and share data. If the user's question is already specific enough on both dimensions, you may proceed — but confirm your interpretation before answering.
 
-Use list_reports to see all available reports with their data periods before searching.`,
+TOOL SELECTION — filter_reports and search_reports answer different questions:
+- filter_reports returns the LIST of reports matching structured filters (source, year, year_min/year_max). Use it for "WHICH reports cover X?" — e.g. "all Ashby reports from 2024", "what's in here from 2026?". It does not return report content.
+- search_reports returns EXCERPTS of report body text matching a keyword or phrase. Use it for "WHAT do the reports say about X?" — e.g. "what's the average time-to-fill?", "find mentions of ghost jobs".
+
+Typical flow: filter_reports → narrow the set → read_report for full text, or search_reports for cross-report excerpts.
+
+Available sources for filter_reports: ${sources.join(", ")}.`;
+}
+
+// ── Server setup ──────────────────────────────────────────────────────────────
+
+const server = new McpServer({
+  name: "Recruiting Reports",
+  version: "1.1.0",
+  instructions: buildInstructions(),
 });
 
-// Resources
 server.resource(
   "index",
   "reports://index",
-  { description: "Master index of all 2026 recruiting benchmark reports" },
+  { description: "Master index of all recruiting benchmark reports, grouped by source." },
   async () => ({
-    contents: [{ uri: "reports://index", text: readIndex(), mimeType: "text/markdown" }],
+    contents: [{ uri: "reports://index", text: readWrappedIndex(), mimeType: "text/markdown" }],
   })
 );
 
 server.resource(
   "report",
   new ResourceTemplate("reports://{name}", { list: undefined }),
-  { description: "Full content of a specific report by filename stem" },
+  { description: "Full content of a specific report by filename stem." },
   async (uri, { name }) => {
-    const reports = allReports();
+    const reports = parsedReports();
     const text = reports[name]
-      ? readFileSync(reports[name], "utf-8")
+      ? reports[name].body
       : `Report '${name}' not found. Available: ${Object.keys(reports).sort().join(", ")}`;
     return { contents: [{ uri: uri.href, text, mimeType: "text/markdown" }] };
   }
 );
 
-// Tools
 server.tool(
   "list_reports",
-  "List all available 2026 recruiting industry reports with a summary of what data each covers.",
+  "List all available recruiting industry reports with a summary of what data each covers.",
   {},
   async () => {
     log("list_reports", {});
-    return { content: [{ type: "text", text: readIndex() }] };
+    return { content: [{ type: "text", text: readWrappedIndex() }] };
   }
 );
 
@@ -211,9 +410,9 @@ server.tool(
   { name: z.string().describe("Filename stem, e.g. 'ashby-startup-hiring-2026'") },
   async ({ name }) => {
     log("read_report", { name });
-    const reports = allReports();
+    const reports = parsedReports();
     const text = reports[name]
-      ? readFileSync(reports[name], "utf-8")
+      ? reports[name].body
       : `Report '${name}' not found.\n\nAvailable:\n${Object.keys(reports).sort().map(k => `  - ${k}`).join("\n")}`;
     return { content: [{ type: "text", text }] };
   }
@@ -221,8 +420,8 @@ server.tool(
 
 server.tool(
   "search_reports",
-  "Search across all reports for a keyword, metric, or topic. Returns matching excerpts with context.",
-  { query: z.string().describe("Search term, e.g. 'time-to-fill', 'AI adoption', 'referral'") },
+  "Full-text keyword search across all report bodies (and titles/authors/best-for blurbs from frontmatter). Returns matching excerpts with surrounding context. Use for topical questions like 'reports about AI adoption' or specific metrics like 'time-to-fill'.",
+  { query: z.string().describe("Keyword or short phrase, e.g. 'time-to-fill', 'hires per recruiter', 'ghost job'.") },
   async ({ query }) => {
     log("search_reports", { query });
     return { content: [{ type: "text", text: searchAcrossReports(query) }] };
@@ -231,8 +430,8 @@ server.tool(
 
 server.tool(
   "get_stat",
-  "Look up a specific benchmark stat or metric across all reports. Returns all mentions with their source.",
-  { metric: z.string().describe("Metric to look up, e.g. 'hires per recruiter', 'candidate NPS'") },
+  "Alias of search_reports phrased as a metric lookup — looks up where a specific benchmark stat appears across all reports. Returns excerpts with context.",
+  { metric: z.string().describe("Metric phrase, e.g. 'hires per recruiter', 'candidate NPS', 'offer acceptance rate'.") },
   async ({ metric }) => {
     log("get_stat", { metric });
     return { content: [{ type: "text", text: searchAcrossReports(metric) }] };
@@ -257,6 +456,24 @@ server.tool(
   }
 );
 
+server.tool(
+  "filter_reports",
+  "Return the LIST of reports matching structured filters (source, year, year_min/year_max). Does NOT return report content — tells you WHICH reports exist for a slice. Then use read_report to read one, or search_reports to query their text. For topical questions ('about AI'), use search_reports instead.",
+  {
+    source:   z.string().optional().describe("Canonical source name. Case-insensitive substring match (e.g. 'Ashby', 'gem', 'LinkedIn'). See server instructions for the full source list."),
+    year:     z.number().int().optional().describe("Exact publication year, e.g. 2026."),
+    year_min: z.number().int().optional().describe("Minimum publication year (inclusive)."),
+    year_max: z.number().int().optional().describe("Maximum publication year (inclusive)."),
+  },
+  async (filters) => {
+    log("filter_reports", filters);
+    const matches = filterReports(filters);
+    return { content: [{ type: "text", text: renderFilterResults(matches, filters) }] };
+  }
+);
+
+export { server };
+
 // ── Transport ─────────────────────────────────────────────────────────────────
 
 const mode = process.argv[2] || "http";
@@ -273,7 +490,7 @@ if (mode === "stdio") {
       return;
     }
 
-    // ── Webapp ──────────────────────────────────────────────────────
+    // ── Webapp ────────────────────────────────────────────────────────────────
     if (req.method === "GET" && (req.url === "/" || req.url === "/index.html")) {
       try {
         const html = readFileSync(join(ROOT, "public", "index.html"), "utf-8");
@@ -328,24 +545,23 @@ if (mode === "stdio") {
       }
       return;
     }
+
+    // ── MCP ───────────────────────────────────────────────────────────────────
     if (req.method === "POST" && req.url === "/mcp") {
-      const transport = new StreamableHTTPServerTransport({
-        sessionIdGenerator: undefined, // stateless
-      });
+      const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
       res.on("close", () => transport.close());
       await server.connect(transport);
       await transport.handleRequest(req, res);
       return;
     }
     if ((req.method === "GET" || req.method === "DELETE") && req.url?.startsWith("/mcp")) {
-      const transport = new StreamableHTTPServerTransport({
-        sessionIdGenerator: undefined,
-      });
+      const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
       res.on("close", () => transport.close());
       await server.connect(transport);
       await transport.handleRequest(req, res);
       return;
     }
+
     res.writeHead(404);
     res.end("Not found");
   });
