@@ -108,5 +108,3 @@ npm test
 ---
 
 Questions or suggestions? Open an issue or reach out at [viet@talentcollective.io](mailto:viet@talentcollective.io).
-
-Licensed under [MIT](LICENSE).
