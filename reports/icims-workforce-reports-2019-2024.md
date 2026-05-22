@@ -1,11 +1,10 @@
-# iCIMS Annual Workforce Reports — 2019–2024
-
-**Source:** iCIMS (icims.com/resources)
-**Data:** Proprietary platform data from 3M+ global platform users; 200M+ applications; 5.5M+ hires annually; supplemented by surveys of job seekers and TA leaders
-**Period:** 2019–2024
-**Best for:** Hiring volume trends, time-to-hire benchmarks, geographic mobility shifts, AI adoption in recruiting, out-of-state application trends, sector hiring comparisons, degree requirements evolution
-
 ---
+title: iCIMS Annual Workforce Reports — 2019–2024
+source: iCIMS
+year: 2022
+---
+
+# iCIMS Annual Workforce Reports — 2019–2024
 
 ## 2019 Data
 

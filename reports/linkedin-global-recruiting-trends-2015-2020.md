@@ -1,11 +1,10 @@
-# LinkedIn Global Recruiting Trends — Annual Series 2015–2020
-
-**Source:** LinkedIn Talent Solutions (business.linkedin.com/talent-solutions)
-**Data:** LinkedIn platform behavioral data (660M–700M+ members); annual global surveys of talent acquisition professionals
-**Period:** 2015–2020 (annual reports)
-**Best for:** Passive candidate sourcing, employer branding evolution, quality of hire measurement, soft skills trends, people analytics growth, internal mobility, multi-generational workforce
-
 ---
+title: LinkedIn Global Recruiting Trends — Annual Series 2015–2020
+source: LinkedIn
+year: 2020
+---
+
+# LinkedIn Global Recruiting Trends — Annual Series 2015–2020
 
 ## 2015 Report — "Global Talent Trends 2015"
 

@@ -1,11 +1,11 @@
-# World Economic Forum — Future of Jobs Reports 2016–2023
-
-**Source:** World Economic Forum (weforum.org/publications)
-**Data:** Surveys of senior executives, chief human resources officers, and global company representatives
-**Period:** 2016, 2018, 2020, 2023 (published every 2–3 years)
-**Best for:** Long-range workforce transformation forecasts, jobs displaced vs. created projections, top skills demand trends, reskilling priorities, automation impact
-
 ---
+title: World Economic Forum — Future of Jobs Reports 2016–2023
+source: WEF
+year: 2016
+published: "2016-01-01"
+---
+
+# World Economic Forum — Future of Jobs Reports 2016–2023
 
 ## 2016 Report — "The Future of Jobs"
 

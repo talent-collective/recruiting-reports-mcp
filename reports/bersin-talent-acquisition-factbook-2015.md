@@ -1,13 +1,10 @@
-# Bersin by Deloitte — Talent Acquisition Factbook 2015
-
-**Source:** Bersin by Deloitte / Josh Bersin (joshbersin.com; deloitte.com)
-**Published:** April 2015
-**Methodology:** Annual benchmarking survey
-**Sample:** 412 organizations surveyed
-**Data period:** 2011–2014 longitudinal; primary data is 2014
-**Best for:** Cost-per-hire benchmarks, time-to-fill by maturity level, budget allocation trends, source of hire shifts, industry recruiting spend differences, performance impact of high-maturity recruiting
-
 ---
+title: Bersin by Deloitte — Talent Acquisition Factbook 2015
+source: Deloitte
+year: 2015
+---
+
+# Bersin by Deloitte — Talent Acquisition Factbook 2015
 
 ## Spending
 

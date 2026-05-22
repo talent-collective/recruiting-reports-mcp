@@ -1,11 +1,11 @@
-# Deloitte Global Human Capital Trends — Annual Series 2021–2024
-
-**Source:** Deloitte Insights (deloitte.com/us/en/insights)
-**Data:** Annual global surveys of business and HR leaders
-**Period:** 2021–2024
-**Best for:** Remote work impact, workforce adaptability, worker-employer relationship evolution, human sustainability gap, burnout rates, AI and technology integration, hybrid work challenges
-
 ---
+title: Deloitte Global Human Capital Trends — Annual Series 2021–2024
+source: Deloitte
+year: 2021
+published: "2021-02-01"
+---
+
+# Deloitte Global Human Capital Trends — Annual Series 2021–2024
 
 ## 2021 — "The Social Enterprise in a World Disrupted"
 

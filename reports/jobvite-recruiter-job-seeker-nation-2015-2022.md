@@ -1,11 +1,10 @@
-# Jobvite Recruiter Nation & Job Seeker Nation — Annual Series 2015–2022
-
-**Source:** Jobvite (jobvite.com); became Employ Inc. in 2022
-**Data:** Annual online surveys of U.S. recruiters, HR professionals, and job seekers; conducted with Zogby Analytics
-**Period:** 2015–2022
-**Best for:** Recruiter practices and challenges, social media in recruiting, candidate behavior, referrals, mobile recruiting, texting, culture fit, salary trends
-
 ---
+title: "Jobvite Recruiter Nation & Job Seeker Nation — Annual Series 2015–2022"
+source: Jobvite
+year: 2022
+---
+
+# Jobvite Recruiter Nation & Job Seeker Nation — Annual Series 2015–2022
 
 ## 2015 Recruiter Nation Survey
 

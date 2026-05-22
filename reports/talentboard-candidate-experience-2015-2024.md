@@ -1,11 +1,11 @@
-# Talent Board Candidate Experience (CandE) Research — Annual Series 2015–2024
-
-**Source:** Talent Board (thetalentboard.org) — CandE Awards program
-**Data:** Annual benchmark research across participating employers and job seekers; continuous since 2011
-**Period:** 2015–2024
-**Best for:** Candidate experience benchmarks, resentment rates, application length, communication gaps, DEI in candidate experience, AI technology adoption for screening, employer brand impact of candidate experience
-
 ---
+title: Talent Board Candidate Experience (CandE) Research — Annual Series 2015–2024
+source: Talent Board
+year: 2017
+published: "2017-02-01"
+---
+
+# Talent Board Candidate Experience (CandE) Research — Annual Series 2015–2024
 
 ## Program Overview
 

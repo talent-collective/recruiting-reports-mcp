@@ -1,11 +1,10 @@
-# Indeed Hiring Lab — COVID-19 Impact & Job Posting Recovery 2020–2022
-
-**Source:** Indeed Hiring Lab (hiringlab.org)
-**Data:** Analysis of Indeed job postings (millions of data points); pre-pandemic baseline = February 1, 2020
-**Period:** 2020–2022
-**Best for:** Job posting volume trends, COVID-19 labor market shock data, sector-by-sector recovery timeline, post-pandemic hiring surge benchmarks
-
 ---
+title: "Indeed Hiring Lab — COVID-19 Impact & Job Posting Recovery 2020–2022"
+source: Indeed
+year: 2022
+---
+
+# Indeed Hiring Lab — COVID-19 Impact & Job Posting Recovery 2020–2022
 
 ## COVID-19 Shock (Spring 2020)
 

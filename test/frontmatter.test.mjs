@@ -11,6 +11,11 @@ const VALID_SOURCES = new Set([
   "Ashby", "Gem", "LinkedIn", "SHRM", "Employ", "iCIMS",
   "Korn Ferry", "HireVue", "Greenhouse", "SignalFire",
   "Criteria Corp", "Bullhorn", "Mercer", "Josh Bersin Company", "Phenom",
+  // Historical sources (Viet's 2015–2024 reports)
+  "Deloitte", "ManpowerGroup", "WEF", "Jobvite", "Talent Board",
+  "Glassdoor", "PwC", "McKinsey", "CareerBuilder", "Indeed",
+  // Cross-source aggregator
+  "Multiple",
 ]);
 
 const reports = parsedReports();
@@ -38,7 +43,7 @@ for (const name of names) {
 
   test(`${name} — year is a sensible int`, () => {
     assert.equal(typeof fm.year, "number");
-    assert.ok(fm.year >= 2020 && fm.year <= 2030, `year ${fm.year} out of range`);
+    assert.ok(fm.year >= 2014 && fm.year <= 2030, `year ${fm.year} out of range`);
   });
 
   test(`${name} — published is null or ISO date`, () => {

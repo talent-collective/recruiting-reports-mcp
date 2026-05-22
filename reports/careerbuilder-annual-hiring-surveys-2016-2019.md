@@ -1,11 +1,12 @@
-# CareerBuilder Annual Hiring Surveys — 2016–2019
-
-**Source:** CareerBuilder (in partnership with Harris Poll)
-**Data:** Online surveys of U.S. hiring managers, HR professionals, and workers
-**Period:** 2016–2019
-**Best for:** Bad hire costs, hiring forecasts, skills gap data, turnover costs, why bad hires happen, employer hiring intentions, candidate fit assessment
-
 ---
+title: CareerBuilder Annual Hiring Surveys — 2016–2019
+source: CareerBuilder
+year: 2017
+published: "2017-09-01"
+sample_size: "Online survey August 16–September 15, 2017"
+---
+
+# CareerBuilder Annual Hiring Surveys — 2016–2019
 
 ## 2016 Annual Hiring Forecast
 

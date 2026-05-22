@@ -205,21 +205,34 @@ function renderFilterResults(matches, filters) {
 export function renderIndex() {
   const reports = Object.values(parsedReports());
   const ashby = reports.filter(r => r.frontmatter.source === "Ashby");
-  const other = reports.filter(r => r.frontmatter.source !== "Ashby");
+  const nonAshby = reports.filter(r => r.frontmatter.source !== "Ashby");
 
-  // Flagship Ashby reports are the annual "Benchmarks" / "Talent Trends Report"
-  // editions (titled accordingly). Everything else is a narrow deep-dive.
+  // Three buckets:
+  //   CORE       = recent (year >= 2025) non-Ashby reports + flagship Ashby annuals
+  //   HISTORICAL = older (year <= 2024) non-Ashby retrospective reports
+  //   DEEP-DIVE  = Ashby's narrow topical reports (not the annual flagships)
+  const CURRENT_YEAR_THRESHOLD = 2025;
   const FLAGSHIP_TITLE_RE = /benchmark|trends report/i;
+  // Multi-year retrospective reports have a year range in the filename (e.g.
+  // "2015-2024", "2018–2024"). They're historical even when the range ends
+  // in a current year.
+  const RANGE_FILENAME_RE = /\b20\d{2}[-–]20\d{2}\b/;
+  const isHistorical = (r) =>
+    (r.frontmatter.year || 0) < CURRENT_YEAR_THRESHOLD
+    || RANGE_FILENAME_RE.test(basename(r.path));
   const ashbyFlagship = ashby.filter(r => FLAGSHIP_TITLE_RE.test(r.frontmatter.title || ""));
   const ashbyDeepDive = ashby.filter(r => !ashbyFlagship.includes(r));
+  const historicalNonAshby = nonAshby.filter(isHistorical);
+  const recentNonAshby = nonAshby.filter(r => !isHistorical(r));
 
-  const core = [...other, ...ashbyFlagship];
+  const core = [...recentNonAshby, ...ashbyFlagship];
   const sortFn = (a, b) =>
     (b.frontmatter.year || 0) - (a.frontmatter.year || 0)
     || (a.frontmatter.source || "").localeCompare(b.frontmatter.source || "")
     || a.name.localeCompare(b.name);
   core.sort(sortFn);
   ashbyDeepDive.sort(sortFn);
+  historicalNonAshby.sort(sortFn);
 
   const entry = (r, num) => {
     const fm = r.frontmatter;
@@ -234,10 +247,14 @@ export function renderIndex() {
   const today = new Date().toISOString().slice(0, 10);
   const total = reports.length;
   const coreMaxYear = Math.max(...core.map(r => r.frontmatter.year || 0));
+  const histYears = historicalNonAshby.map(r => r.frontmatter.year || 0).filter(Boolean);
+  const histRange = histYears.length
+    ? `${Math.min(...histYears)}–${Math.max(...histYears)}`
+    : "";
   let n = 0;
   const lines = [
     `**Compiled:** ${today}`,
-    `**Reports:** ${total} (${core.length} core, ${ashbyDeepDive.length} Ashby deep-dives)`,
+    `**Reports:** ${total} (${core.length} core, ${ashbyDeepDive.length} Ashby deep-dives, ${historicalNonAshby.length} historical)`,
     "",
     "---",
     "",
@@ -250,6 +267,12 @@ export function renderIndex() {
     "## ASHBY DEEP-DIVE REPORTS (multi-year data)",
     "",
     ashbyDeepDive.map(r => entry(r, ++n)).join("\n\n"),
+    "",
+    "---",
+    "",
+    `## HISTORICAL REPORTS (${histRange})`,
+    "",
+    historicalNonAshby.map(r => entry(r, ++n)).join("\n\n"),
   ];
   return lines.join("\n");
 }

@@ -1,11 +1,11 @@
-# SHRM Human Capital Benchmarking & Talent Acquisition Reports — 2015–2025
-
-**Source:** Society for Human Resource Management (shrm.org/research)
-**Data:** Annual benchmarking surveys of SHRM members; random sampling of HR professionals
-**Period:** 2015–2025
-**Best for:** Cost-per-hire benchmarks, time-to-fill benchmarks, recruiter workload, AI adoption in HR, historical cost trends, executive vs. non-executive hiring costs
-
 ---
+title: "SHRM Human Capital Benchmarking & Talent Acquisition Reports — 2015–2025"
+source: SHRM
+year: 2025
+sample_size: "Random sampling of SHRM members; 2,048 total respondents (1,503 answered succession planning; 1,192 addressed time-to-fill)"
+---
+
+# SHRM Human Capital Benchmarking & Talent Acquisition Reports — 2015–2025
 
 ## 2016 Report (FY2015 Data) — Human Capital Benchmarking Report
 

@@ -1,11 +1,12 @@
-# McKinsey — The Future of Work After COVID-19 & The Great Attrition 2021–2022
-
-**Source:** McKinsey Global Institute (mckinsey.com)
-**Data:** Analysis across 8 focus countries; proprietary surveys of workers and employers
-**Period:** 2021–2022
-**Best for:** Remote work projections, worker quit rates, "Great Resignation" data, job transition scale, automation acceleration, top quit reasons, skills for emerging job roles
-
 ---
+title: "McKinsey — The Future of Work After COVID-19 & The Great Attrition 2021–2022"
+source: McKinsey
+year: 2021
+published: "2021-02-01"
+sample_size: "Analysis across 8 focus countries: China, France, Germany, India, Japan, Spain, UK, US"
+---
+
+# McKinsey — The Future of Work After COVID-19 & The Great Attrition 2021–2022
 
 ## "The Future of Work After COVID-19" (February 2021)
 

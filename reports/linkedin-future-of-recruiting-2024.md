@@ -1,11 +1,10 @@
-# LinkedIn Future of Recruiting 2024
-
-**Source:** LinkedIn Talent Solutions (business.linkedin.com/talent-solutions)
-**Published:** 2024
-**Methodology:** 1,453 recruiting professionals surveyed across management levels; 498 hiring managers; 23 countries; six languages (October–November 2023); 16,688 global members surveyed for candidate priorities (November 2023)
-**Best for:** AI adoption benchmarks, skills-based hiring data, flexible work impact on recruiting, Gen Z dynamics, quality of hire measurement
-
 ---
+title: LinkedIn Future of Recruiting 2024
+source: LinkedIn
+year: 2024
+---
+
+# LinkedIn Future of Recruiting 2024
 
 ## AI Adoption in Recruiting
 

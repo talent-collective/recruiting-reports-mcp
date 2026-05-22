@@ -25,16 +25,26 @@ const SOURCE_MAP = [
   // longest/most specific patterns first
   [/josh\s*bersin/i,          "Josh Bersin Company"],
   [/criteria\s*corp/i,        "Criteria Corp"],
+  [/manpower\s*group/i,       "ManpowerGroup"],
+  [/career\s*builder/i,       "CareerBuilder"],
+  [/talent\s*board/i,         "Talent Board"],
   [/korn\s*ferry/i,           "Korn Ferry"],
   [/signal\s*fire/i,          "SignalFire"],
   [/greenhouse/i,             "Greenhouse"],
+  [/glassdoor/i,              "Glassdoor"],
   [/bullhorn/i,               "Bullhorn"],
   [/hirevue/i,                "HireVue"],
+  [/deloitte/i,               "Deloitte"],
+  [/mckinsey/i,               "McKinsey"],
+  [/jobvite/i,                "Jobvite"],
   [/phenom/i,                 "Phenom"],
   [/mercer/i,                 "Mercer"],
+  [/indeed/i,                 "Indeed"],
   [/linkedin/i,               "LinkedIn"],
   [/icims/i,                  "iCIMS"],
-  [/employ/i,                 "Employ"],
+  [/\bemploy\s*inc/i,         "Employ"],
+  [/\bWEF\b|world\s*economic\s*forum/i, "WEF"],
+  [/\bpwc\b/i,                "PwC"],
   [/shrm/i,                   "SHRM"],
   [/ashby/i,                  "Ashby"],
   [/\bgem\b/i,                "Gem"],
@@ -188,16 +198,18 @@ function processFile(path) {
 
   const { published, year: publishedYear } = parsePublishedDate(publishedRaw);
 
-  // Year: prefer Published, then filename suffix, then title year
+  // Year: prefer Published, then filename suffix, then title year.
+  // For multi-year filenames like "2015-2020", pick the latest year (the
+  // report's edition / coverage end year, not the start).
   let year = publishedYear;
   if (!year) {
     const fname = basename(path);
-    const fy = fname.match(/(20\d{2})/);
-    if (fy) year = parseInt(fy[1], 10);
+    const fy = [...fname.matchAll(/20\d{2}/g)].map(m => parseInt(m[0], 10));
+    if (fy.length) year = Math.max(...fy);
   }
   if (!year && title) {
-    const ty = title.match(/\b(20\d{2})\b/);
-    if (ty) year = parseInt(ty[1], 10);
+    const ty = [...title.matchAll(/\b20\d{2}\b/g)].map(m => parseInt(m[0], 10));
+    if (ty.length) year = Math.max(...ty);
   }
 
   const { start: dataStart, end: dataEnd } = parsePeriod(periodRaw);
@@ -247,7 +259,7 @@ function processFile(path) {
 function discoverReports() {
   const paths = [];
   for (const f of readdirSync(ROOT)) {
-    if (f.endsWith(".md") && !["README.md", "MEMORY.md", "substack-post.md"].includes(f)) {
+    if (f.endsWith(".md") && !["README.md", "CONTRIBUTING.md", "MEMORY.md", "substack-post.md", "PR_BODY.md"].includes(f)) {
       paths.push(join(ROOT, f));
     }
   }

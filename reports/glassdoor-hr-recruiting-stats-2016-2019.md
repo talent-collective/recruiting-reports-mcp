@@ -1,11 +1,12 @@
-# Glassdoor HR & Recruiting Statistics Reports — 2016–2019
-
-**Source:** Glassdoor Economic Research (glassdoor.com/research)
-**Data:** Glassdoor proprietary platform data + compilation of third-party HR research
-**Period:** 2016–2019
-**Best for:** Application volume benchmarks, employer brand impact, mobile job search, diversity expectations, candidate review behavior, job market outlook
-
 ---
+title: "Glassdoor HR & Recruiting Statistics Reports — 2016–2019"
+source: Glassdoor
+year: 2018
+published: "2018-12-01"
+sample_size: Glassdoor proprietary research and third-party HR studies
+---
+
+# Glassdoor HR & Recruiting Statistics Reports — 2016–2019
 
 ## 2016 — "50 HR & Recruiting Stats"
 

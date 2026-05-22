@@ -1,11 +1,11 @@
-# Mercer Global Talent Trends — Annual Series 2019–2024
-
-**Source:** Mercer (Marsh McLennan) (mercer.com/insights)
-**Data:** Annual global surveys of C-suite executives, HR leaders, and employees
-**Period:** 2019–2024
-**Best for:** Burnout rates, worker-employer trust, automation/reskilling readiness, financial wellbeing, compensation strategy, DEI effectiveness, hybrid work impact, high-growth company practices
-
 ---
+title: Mercer Global Talent Trends — Annual Series 2019–2024
+source: Mercer
+year: 2019
+published: "2019-02-01"
+---
+
+# Mercer Global Talent Trends — Annual Series 2019–2024
 
 ## 2019 — "Global Talent Trends 2019"
 

@@ -51,7 +51,7 @@ If your report came with prose-style metadata at the top (`**Source:** ...`, `**
 
 ### Canonical sources
 
-Ashby · Bullhorn · Criteria Corp · Employ · Gem · Greenhouse · HireVue · iCIMS · Josh Bersin Company · Korn Ferry · LinkedIn · Mercer · Phenom · SHRM · SignalFire
+Ashby · Bullhorn · CareerBuilder · Criteria Corp · Deloitte · Employ · Gem · Glassdoor · Greenhouse · HireVue · iCIMS · Indeed · Jobvite · Josh Bersin Company · Korn Ferry · LinkedIn · ManpowerGroup · McKinsey · Mercer · Multiple · Phenom · PwC · SHRM · SignalFire · Talent Board · WEF
 
 If you need to add a new source, update `VALID_SOURCES` in [test/frontmatter.test.mjs](test/frontmatter.test.mjs) and the `SOURCE_MAP` in [scripts/extract-frontmatter.mjs](scripts/extract-frontmatter.mjs).
 
