@@ -83,7 +83,18 @@ export function parsedReports() {
   for (const [name, path] of Object.entries(discoverReportFiles())) {
     const raw = readFileSync(path, "utf-8");
     const { frontmatter, body } = parseFrontmatter(raw);
-    _cache[name] = { name, path, frontmatter, body };
+    // searchText prepends descriptive metadata so fields that only live in
+    // frontmatter (author, best_for, sample_size) are still keyword-searchable.
+    // Topic tags are intentionally excluded — they're identifiers for
+    // filter_reports, not phrases users would type into search_reports.
+    const metaLines = [
+      frontmatter.title && `Title: ${frontmatter.title}`,
+      frontmatter.author && `Author: ${frontmatter.author}`,
+      frontmatter.best_for && `Best for: ${frontmatter.best_for}`,
+      frontmatter.sample_size && `Data: ${frontmatter.sample_size}`,
+    ].filter(Boolean).join("\n");
+    const searchText = metaLines ? `${metaLines}\n\n${body}` : body;
+    _cache[name] = { name, path, frontmatter, body, searchText };
   }
   return _cache;
 }
@@ -119,7 +130,7 @@ export function searchAcrossReports(query) {
   const results = [];
   const reports = parsedReports();
   for (const [name, report] of Object.entries(reports).sort()) {
-    const lines = report.body.split("\n");
+    const lines = report.searchText.split("\n");
     const snippets = [];
     for (let i = 0; i < lines.length; i++) {
       if (lines[i].toLowerCase().includes(q)) {

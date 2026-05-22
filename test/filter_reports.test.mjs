@@ -3,7 +3,7 @@
  */
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { filterReports, parsedReports } from "../server.js";
+import { filterReports, parsedReports, searchAcrossReports } from "../server.js";
 
 const total = Object.keys(parsedReports()).length;
 
@@ -61,4 +61,15 @@ test("nonsense filters return empty result", () => {
   assert.equal(filterReports({ source: "DoesNotExist" }).length, 0);
   assert.equal(filterReports({ year: 1999 }).length, 0);
   assert.equal(filterReports({ topic: "not-a-real-tag" }).length, 0);
+});
+
+test("search_reports matches author from frontmatter (was a regression)", () => {
+  const result = searchAcrossReports("Joel Westmark");
+  assert.ok(!result.startsWith("No results"), "search should match an author from frontmatter");
+  assert.match(result, /ashby-/);
+});
+
+test("search_reports matches best_for and sample_size from frontmatter", () => {
+  assert.ok(!searchAcrossReports("autonomous agent trends").startsWith("No results"));
+  assert.ok(!searchAcrossReports("1,674 global talent leaders").startsWith("No results"));
 });
