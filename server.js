@@ -27,6 +27,8 @@ const REPORTS_DIR = join(ROOT, "reports");
 // multi-line strings, or anchors needed.
 
 export function parseFrontmatter(text) {
+  // Normalize CRLF so the parser works on Windows checkouts (core.autocrlf=true).
+  text = text.replace(/\r\n/g, "\n");
   if (!text.startsWith("---\n")) return { frontmatter: {}, body: text };
   const end = text.indexOf("\n---", 4);
   if (end === -1) return { frontmatter: {}, body: text };
@@ -441,10 +443,14 @@ server.tool(
 export { server };
 
 // ── Transport ─────────────────────────────────────────────────────────────────
+// Only start a transport when this file is the entry point, not when imported.
 
+const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
 const mode = process.argv[2] || "http";
 
-if (mode === "stdio") {
+if (!isMain) {
+  // imported as a module — do not bind any transport
+} else if (mode === "stdio") {
   const transport = new StdioServerTransport();
   await server.connect(transport);
 } else {
