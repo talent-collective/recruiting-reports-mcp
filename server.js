@@ -221,9 +221,9 @@ export function renderIndex() {
   core.sort(sortFn);
   ashbyDeepDive.sort(sortFn);
 
-  const entry = (r) => {
+  const entry = (r, num) => {
     const fm = r.frontmatter;
-    const lines = [`### ${fm.title || r.name}`];
+    const lines = [`## ${num}. ${fm.title || r.name}`];
     lines.push(`**File:** \`${basename(r.path)}\`  `);
     if (fm.sample_size) lines.push(`**Data:** ${fm.sample_size}  `);
     if (fm.published) lines.push(`**Published:** ${fm.published}  `);
@@ -233,21 +233,23 @@ export function renderIndex() {
 
   const today = new Date().toISOString().slice(0, 10);
   const total = reports.length;
+  const coreMaxYear = Math.max(...core.map(r => r.frontmatter.year || 0));
+  let n = 0;
   const lines = [
     `**Compiled:** ${today}`,
     `**Reports:** ${total} (${core.length} core, ${ashbyDeepDive.length} Ashby deep-dives)`,
     "",
     "---",
     "",
-    "## CORE REPORTS",
+    `## CORE REPORTS (${coreMaxYear})`,
     "",
-    core.map(entry).join("\n\n"),
+    core.map(r => entry(r, ++n)).join("\n\n"),
     "",
     "---",
     "",
-    "## ASHBY DEEP-DIVE REPORTS",
+    "## ASHBY DEEP-DIVE REPORTS (multi-year data)",
     "",
-    ashbyDeepDive.map(entry).join("\n\n"),
+    ashbyDeepDive.map(r => entry(r, ++n)).join("\n\n"),
   ];
   return lines.join("\n");
 }

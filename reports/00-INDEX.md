@@ -7,162 +7,162 @@
 
 ---
 
-## CORE REPORTS
+## CORE REPORTS (2026)
 
-### Ashby: Recruiting Operations Benchmarks | 2026 Talent Trends Report
+## 1. Ashby: Recruiting Operations Benchmarks | 2026 Talent Trends Report
 **File:** `ashby-recruiting-ops-benchmarks-2026.md`  
 **Data:** 54M+ applications, 93K jobs, January 2021–March 2026  
 **Published:** 2026-05-07  
 
-### Ashby: The State of Startup Hiring | 2026 Talent Trends Report
+## 2. Ashby: The State of Startup Hiring | 2026 Talent Trends Report
 **File:** `ashby-startup-hiring-2026.md`  
 **Data:** 1,200+ venture-backed startups globally, 32K hires, 11M applications (mostly 2025 data)  
 **Published:** 2026-02-23  
 
-### Employ Inc.: 2026 Hiring Benchmarks Report — "Redefining What Good Looks Like"
+## 3. Employ Inc.: 2026 Hiring Benchmarks Report — "Redefining What Good Looks Like"
 **File:** `employ-hiring-benchmarks-2026.md`  
 **Data:** 6,640 customers across Jobvite, Lever, and JazzHR  
 **Published:** 2026-01-07  
 
-### Gem — 2026 Email Outreach Benchmarks for Recruiters
+## 4. Gem — 2026 Email Outreach Benchmarks for Recruiters
 **File:** `gem-email-outreach-benchmarks-2026.md`  
 **Data:** 6.2M email sequences, 15.5M messages (2025 Gem platform data)  
 **Best for:** Recruiter outreach sequence structure, send timing, subject line strategy, company-size segmentation
 
-### Gem — 2026 Recruiting Benchmarks Report
+## 5. Gem — 2026 Recruiting Benchmarks Report
 **File:** `gem-recruiting-benchmarks-2026.md`  
 **Data:** 165M applications, 1.2M hires, 15M candidates  
 **Best for:** Recruiter workload benchmarks, sourcing channel ROI, offer acceptance rates, interview volume by role type
 
-### Greenhouse — The Hire Standard: Recruiting Benchmarks 2026
+## 6. Greenhouse — The Hire Standard: Recruiting Benchmarks 2026
 **File:** `greenhouse-hire-standard-2026.md`  
 **Data:** 6,000+ companies, 640M+ applications (2022-2025)  
 **Published:** 2026-03-01  
 
-### HireVue — 2026 Global AI in Hiring Report
+## 7. HireVue — 2026 Global AI in Hiring Report
 **File:** `hirevue-ai-in-hiring-2026.md`  
 **Data:** 3,100+ hiring managers surveyed globally  
 **Best for:** AI adoption in hiring, candidate AI usage, trust gaps, transparency requirements
 
-### iCIMS: 2026 Workforce Reports (Monthly Series)
+## 8. iCIMS: 2026 Workforce Reports (Monthly Series)
 **File:** `icims-workforce-reports-2026.md`  
 **Data:** iCIMS platform data + surveys of 1,000 U.S. job seekers and 250 TA leaders  
 **Published:** 2026-01-01  
 
-### LinkedIn: 2026 Global Talent Report
+## 9. LinkedIn: 2026 Global Talent Report
 **File:** `linkedin-global-talent-report-2026.md`  
 **Data:** 1.2B+ LinkedIn members, 12B+ data points  
 
-### SHRM: 2026 Recruiting Executives — Priorities and Perspectives
+## 10. SHRM: 2026 Recruiting Executives — Priorities and Perspectives
 **File:** `shrm-recruiting-executives-priorities-2026.md`  
 **Data:** 298 heads of recruiting surveyed Jan 21–Feb 4, 2026 via SHRM Voice of Work Research Panel. Required to lead their org's recruitment function. Multiple industries, sectors, sizes, and locations. Data not weighted.  
 
-### Ashby: Recruiter Productivity | 2025 Talent Trends Report
+## 11. Ashby: Recruiter Productivity | 2025 Talent Trends Report
 **File:** `ashby-recruiter-productivity-2025.md`  
 **Data:** 109M+ applications, 247K jobs, January 2021–March 2026  
 **Published:** 2025-01-07  
 
-### Bullhorn — GRID 2025 Talent Trends Report
+## 12. Bullhorn — GRID 2025 Talent Trends Report
 **File:** `bullhorn-grid-talent-trends-2025.md`  
 **Data:** 2,766 respondents who worked with recruitment firms in past 3 years; global coverage across North America, UK/Ireland, DACH, Benelux, APAC  
 **Published:** 2025-06-01  
 
-### Josh Bersin Company — The Talent Acquisition Revolution: How AI is Transforming Recruiting
+## 13. Josh Bersin Company — The Talent Acquisition Revolution: How AI is Transforming Recruiting
 **File:** `bersin-talent-acquisition-revolution-2025.md`  
 **Data:** Global market analysis; case studies across multiple industries  
 **Published:** 2025-09-16  
 
-### Korn Ferry — TA Trends 2026: Human–AI Power Couple
+## 14. Korn Ferry — TA Trends 2026: Human–AI Power Couple
 **File:** `kornferry-ta-trends-2026.md`  
 **Data:** 1,674 global talent leaders + 230 Korn Ferry talent experts surveyed  
 **Published:** 2025-10-28  
 **Best for:** AI adoption in TA, autonomous agent trends, office mandate impact, critical skills priorities, TA strategic positioning
 
-### Mercer — Global Talent Trends 2024-2025
+## 15. Mercer — Global Talent Trends 2024-2025
 **File:** `mercer-global-talent-trends-2025.md`  
 **Data:** Nearly 12,000 respondents including executives, HR leaders, employees, and investors across 16 geographies and 16 industries  
 
-### Phenom — State of AI & Automation for HR: 2026 Benchmarks Report
+## 16. Phenom — State of AI & Automation for HR: 2026 Benchmarks Report
 **File:** `phenom-ai-automation-hr-benchmarks-2026.md`  
 **Data:** Nearly 500 organizations across 12+ industries; supplemented by survey of 100+ HR professionals  
 **Published:** 2025-12-16  
 
-### SignalFire — State of Tech Talent Report 2025
+## 17. SignalFire — State of Tech Talent Report 2025
 **File:** `signalfire-state-of-tech-talent-2025.md`  
 **Data:** Beacon AI platform tracking 650M+ professionals and 80M+ organizations  
 **Published:** 2025-05-20  
 
-### Criteria Corp — Hiring Benchmark Report 2024-2025
+## 18. Criteria Corp — Hiring Benchmark Report 2024-2025
 **File:** `criteria-corp-hiring-benchmark-2025.md`  
 **Data:** 425+ hiring professionals surveyed globally, primarily US, Australia, and Canada (July 2024)  
 
-### LinkedIn Future of Recruiting 2025
+## 19. LinkedIn Future of Recruiting 2025
 **File:** `linkedin-future-of-recruiting-2025.md`  
 **Data:** 1,271 recruiting professionals in management roles or higher (1,019 corporate, 252 staffing); billions of data points from 1B+ LinkedIn members across 200+ countries  
 **Published:** 2024-09-01  
 
 ---
 
-## ASHBY DEEP-DIVE REPORTS
+## ASHBY DEEP-DIVE REPORTS (multi-year data)
 
-### Ashby — Did Hiring Pick Up in 2025?
+## 20. Ashby — Did Hiring Pick Up in 2025?
 **File:** `ashby-2025-hiring-trends.md`  
 **Data:** Fixed cohort of hundreds of companies tracked across 8 consecutive quarters  
 **Best for:** 2025 hiring recovery signals, company-size divergence, EMEA vs. North America comparison
 
-### Ashby — Does AI Notetaking Improve Feedback Forms?
+## 21. Ashby — Does AI Notetaking Improve Feedback Forms?
 **File:** `ashby-ai-notetaking.md`  
 **Published:** 2025-12-12  
 **Best for:** AI notetaking ROI, scorecard submission speed, feedback quality improvement
 
-### Ashby — Are Jobs Asking More Application Questions?
+## 22. Ashby — Are Jobs Asking More Application Questions?
 **File:** `ashby-application-questions.md`  
 **Data:** 4.8M+ applications  
 **Published:** 2025-03-18  
 **Best for:** Application question trends, long-form question prevalence, completion behavior
 
-### Ashby — How Many Hires Come From Inbound?
+## 23. Ashby — How Many Hires Come From Inbound?
 **File:** `ashby-inbound-hires.md`  
 **Data:** ~250,000 hires  
 **Best for:** Source-of-hire benchmarks, inbound vs. sourcing vs. referral split, company size patterns
 
-### Ashby — What Is a Recruiter's Capacity?
+## 24. Ashby — What Is a Recruiter's Capacity?
 **File:** `ashby-recruiter-capacity.md`  
 **Data:** 26M+ interactions; 100K jobs  
 **Best for:** Recruiter and coordinator capacity benchmarks, company-size comparison, peak load patterns
 
-### Ashby — Applications Per Job Report
+## 25. Ashby — Applications Per Job Report
 **File:** `ashby-applications-per-job.md`  
 **Data:** ~13M applications (original); updated through January 2024  
 **Best for:** Application volume trends, first-week spike patterns, business vs. technical role comparison
 
-### Ashby — Candidate Sourcing Report
+## 26. Ashby — Candidate Sourcing Report
 **File:** `ashby-candidate-sourcing.md`  
 **Data:** 500K+ email sequences  
 **Best for:** Sourcing email benchmarks, sequence structure, AI personalization lift, role-by-role sourcing patterns
 
-### Ashby — How Common Are Ghost Jobs?
+## 27. Ashby — How Common Are Ghost Jobs?
 **File:** `ashby-ghost-jobs.md`  
 **Data:** 22,000+ job postings  
 **Best for:** Job fill rates, unfilled position analysis, ghost job prevalence in real hiring data
 
-### Ashby — Offer Acceptance Rates Report
+## 28. Ashby — Offer Acceptance Rates Report
 **File:** `ashby-offer-acceptance-rates.md`  
 **Data:** 230K applications reaching offer stage  
 **Best for:** OAR benchmarks by function and industry, time-in-offer-stage norms, rescission rates
 
-### Ashby — Recruiting Coordination Report
+## 29. Ashby — Recruiting Coordination Report
 **File:** `ashby-recruiting-coordination.md`  
 **Data:** 2.8M candidates with interviews; 5.1M+ interview events  
 **Published:** 2024-10-22  
 **Best for:** Coordinator staffing benchmarks, scheduling speed, scorecard submission rates, direct booking impact
 
-### Ashby — Are Referred Candidates More Likely to Be Hired?
+## 30. Ashby — Are Referred Candidates More Likely to Be Hired?
 **File:** `ashby-referrals.md`  
 **Data:** 38M+ applications across 93K jobs  
 **Best for:** Referral conversion rates vs. other sources, application source breakdown, offer rate trends
 
-### Ashby — Candidate Experience Surveys Report
+## 31. Ashby — Candidate Experience Surveys Report
 **File:** `ashby-candidate-experience-surveys.md`  
 **Data:** 67,400 survey requests; 11,900 responses  
 **Best for:** Candidate NPS benchmarks, survey response rates, experience by hiring stage and outcome
