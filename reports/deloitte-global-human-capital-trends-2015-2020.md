@@ -1,11 +1,11 @@
-# Deloitte Global Human Capital Trends — Annual Series 2015–2020
-
-**Source:** Deloitte Insights (deloitte.com/us/en/insights)
-**Data:** Annual global surveys of business and HR leaders
-**Period:** 2015–2020
-**Best for:** Culture and engagement benchmarks, leadership gaps, people analytics maturity, gig/contingent workforce, employee experience, remote work impact, workforce adaptability
-
 ---
+title: Deloitte Global Human Capital Trends — Annual Series 2015–2020
+source: Deloitte
+year: 2020
+sample_size: Pre-COVID-19 data with COVID overlay analysis
+---
+
+# Deloitte Global Human Capital Trends — Annual Series 2015–2020
 
 ## 2015 — "Leading in the New World of Work"
 

@@ -1,11 +1,14 @@
-# Ashby — Candidate Experience Surveys Report
-
-**Source:** ashbyhq.com/talent-trends-report  
-**Data:** 67,400 survey requests; 11,900 responses  
-**Period:** January 2022 – October 2023  
-**Best for:** Candidate NPS benchmarks, survey response rates, experience by hiring stage and outcome
-
 ---
+title: Ashby — Candidate Experience Surveys Report
+source: Ashby
+year: 2023
+data_period_start: "2022-01"
+data_period_end: "2023-12"
+sample_size: "67,400 survey requests; 11,900 responses"
+best_for: "Candidate NPS benchmarks, survey response rates, experience by hiring stage and outcome"
+---
+
+# Ashby — Candidate Experience Surveys Report
 
 ## Response Rate Benchmarks
 

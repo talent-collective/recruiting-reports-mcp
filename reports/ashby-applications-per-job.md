@@ -1,11 +1,14 @@
-# Ashby — Applications Per Job Report
-
-**Source:** ashbyhq.com/talent-trends-report  
-**Data:** ~13M applications (original); updated through January 2024  
-**Period:** January 2021 – January 2024  
-**Best for:** Application volume trends, first-week spike patterns, business vs. technical role comparison
-
 ---
+title: Ashby — Applications Per Job Report
+source: Ashby
+year: 2024
+data_period_start: "2021-01"
+data_period_end: "2024-12"
+sample_size: ~13M applications (original); updated through January 2024
+best_for: "Application volume trends, first-week spike patterns, business vs. technical role comparison"
+---
+
+# Ashby — Applications Per Job Report
 
 ## Volume Growth (Jan 2021 – Jan 2024)
 

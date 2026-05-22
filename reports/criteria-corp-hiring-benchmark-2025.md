@@ -1,8 +1,12 @@
+---
+title: Criteria Corp — Hiring Benchmark Report 2024-2025
+source: Criteria Corp
+year: 2024
+url: "https://www.criteriacorp.com/research/2024-2025-hiring-benchmark-report"
+sample_size: "425+ hiring professionals surveyed globally, primarily US, Australia, and Canada (July 2024)"
+---
+
 # Criteria Corp — Hiring Benchmark Report 2024-2025
-**Source:** Criteria Corp
-**Published:** 2024 (7th annual edition)
-**Data:** 425+ hiring professionals surveyed globally, primarily US, Australia, and Canada (July 2024)
-**URL:** https://www.criteriacorp.com/research/2024-2025-hiring-benchmark-report
 
 ## Methodology
 Seventh annual survey of 425+ hiring professionals across organizations of all sizes, collected July 2024. Primarily US, Australia, and Canada respondents.

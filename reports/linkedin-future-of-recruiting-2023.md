@@ -1,11 +1,10 @@
-# LinkedIn Future of Recruiting 2023
-
-**Source:** LinkedIn Talent Solutions (business.linkedin.com/talent-solutions)
-**Published:** 2023
-**Methodology:** Interviews with global talent leaders; surveys of thousands of recruiting professionals; analysis of billions of LinkedIn data points; monthly surveys of 20,000+ LinkedIn members on job priorities. Regional editions for 10 geographies; industry editions for Healthcare and Staffing.
-**Best for:** TA strategic positioning, skills-first hiring momentum, generative AI sentiment, DEI priorities, internal mobility, contingent labor growth
-
 ---
+title: LinkedIn Future of Recruiting 2023
+source: LinkedIn
+year: 2023
+---
+
+# LinkedIn Future of Recruiting 2023
 
 ## Strategic Function
 

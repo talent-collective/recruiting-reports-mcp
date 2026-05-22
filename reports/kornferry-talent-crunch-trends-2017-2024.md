@@ -1,11 +1,11 @@
-# Korn Ferry Talent Acquisition & Workforce Trends — 2017–2024
-
-**Source:** Korn Ferry (kornferry.com/insights)
-**Data:** Global surveys of HR professionals, talent leaders, and labor market analysis
-**Period:** 2017–2024
-**Best for:** Global talent crunch projections, skills shortage economic impact, purpose-driven work, AI in talent acquisition, geographic mobility, interim talent, skills-based hiring momentum
-
 ---
+title: "Korn Ferry Talent Acquisition & Workforce Trends — 2017–2024"
+source: Korn Ferry
+year: 2017
+sample_size: Analysis of labor supply-demand gaps in 20 economies across three sectors (financial/business services; tech/media/telecom; manufacturing)
+---
+
+# Korn Ferry Talent Acquisition & Workforce Trends — 2017–2024
 
 ## 2017 — Talent Trend Predictions
 

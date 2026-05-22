@@ -1,11 +1,14 @@
-# Ashby — How Common Are Ghost Jobs?
-
-**Source:** ashbyhq.com/talent-trends-report  
-**Data:** 22,000+ job postings  
-**Period:** January 2021 – December 2024  
-**Best for:** Job fill rates, unfilled position analysis, ghost job prevalence in real hiring data
-
 ---
+title: Ashby — How Common Are Ghost Jobs?
+source: Ashby
+year: 2024
+data_period_start: "2021-01"
+data_period_end: "2024-12"
+sample_size: "22,000+ job postings"
+best_for: "Job fill rates, unfilled position analysis, ghost job prevalence in real hiring data"
+---
+
+# Ashby — How Common Are Ghost Jobs?
 
 ## Job Fill Rates (2024, Ashby Customer Data)
 

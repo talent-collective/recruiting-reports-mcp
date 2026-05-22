@@ -1,10 +1,12 @@
-# Ashby — Does AI Notetaking Improve Feedback Forms?
-
-**Source:** ashbyhq.com/talent-trends-report  
-**Published:** December 12, 2025  
-**Best for:** AI notetaking ROI, scorecard submission speed, feedback quality improvement
-
 ---
+title: Ashby — Does AI Notetaking Improve Feedback Forms?
+source: Ashby
+year: 2025
+published: "2025-12-12"
+best_for: "AI notetaking ROI, scorecard submission speed, feedback quality improvement"
+---
+
+# Ashby — Does AI Notetaking Improve Feedback Forms?
 
 ## Scorecard Submission Speed
 

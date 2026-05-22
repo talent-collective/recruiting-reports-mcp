@@ -1,9 +1,13 @@
-# iCIMS: 2026 Workforce Reports (Monthly Series)
-**Source:** https://www.icims.com/january-2026-workforce-report/ (and Feb/Mar issues)  
-**Published:** January–March 2026 (monthly series)  
-**Data:** iCIMS platform data + surveys of 1,000 U.S. job seekers and 250 TA leaders
-
 ---
+title: "iCIMS: 2026 Workforce Reports (Monthly Series)"
+source: iCIMS
+year: 2026
+published: "2026-01-01"
+url: "https://www.icims.com/january-2026-workforce-report/ (and Feb/Mar issues)"
+sample_size: "iCIMS platform data + surveys of 1,000 U.S. job seekers and 250 TA leaders"
+---
+
+# iCIMS: 2026 Workforce Reports (Monthly Series)
 
 ## January 2026 Workforce Report (Primary Annual Edition)
 

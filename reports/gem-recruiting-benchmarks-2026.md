@@ -1,11 +1,13 @@
-# Gem — 2026 Recruiting Benchmarks Report
-
-**Source:** https://www.gem.com/resource/recruiting-benchmarks  
-**Published:** 2026  
-**Data:** 165M applications, 1.2M hires, 15M candidates  
-**Best for:** Recruiter workload benchmarks, sourcing channel ROI, offer acceptance rates, interview volume by role type
-
 ---
+title: Gem — 2026 Recruiting Benchmarks Report
+source: Gem
+year: 2026
+url: "https://www.gem.com/resource/recruiting-benchmarks"
+sample_size: "165M applications, 1.2M hires, 15M candidates"
+best_for: "Recruiter workload benchmarks, sourcing channel ROI, offer acceptance rates, interview volume by role type"
+---
+
+# Gem — 2026 Recruiting Benchmarks Report
 
 ## Market Conditions
 

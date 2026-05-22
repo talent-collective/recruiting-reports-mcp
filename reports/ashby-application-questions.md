@@ -1,12 +1,15 @@
-# Ashby — Are Jobs Asking More Application Questions?
-
-**Source:** ashbyhq.com/talent-trends-report  
-**Published:** March 18, 2025  
-**Data:** 4.8M+ applications  
-**Period:** January 2021 – December 2024  
-**Best for:** Application question trends, long-form question prevalence, completion behavior
-
 ---
+title: Ashby — Are Jobs Asking More Application Questions?
+source: Ashby
+year: 2025
+published: "2025-03-18"
+data_period_start: "2021-01"
+data_period_end: "2024-12"
+sample_size: "4.8M+ applications"
+best_for: "Application question trends, long-form question prevalence, completion behavior"
+---
+
+# Ashby — Are Jobs Asking More Application Questions?
 
 ## Key Finding
 

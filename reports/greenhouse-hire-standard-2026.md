@@ -1,8 +1,13 @@
+---
+title: "Greenhouse — The Hire Standard: Recruiting Benchmarks 2026"
+source: Greenhouse
+year: 2026
+published: "2026-03-01"
+url: "https://www.greenhouse.com/recruiting-benchmarks"
+sample_size: "6,000+ companies, 640M+ applications (2022-2025)"
+---
+
 # Greenhouse — The Hire Standard: Recruiting Benchmarks 2026
-**Source:** Greenhouse
-**Published:** March 2026
-**Data:** 6,000+ companies, 640M+ applications (2022-2025)
-**URL:** https://www.greenhouse.com/recruiting-benchmarks
 
 ## Methodology
 Analysis of over 640 million applications across 6,000+ companies on the Greenhouse platform from 2022 to 2025. Data reflects North America unless otherwise noted.

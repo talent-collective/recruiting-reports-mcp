@@ -1,11 +1,10 @@
-# Jobvite Recruiting Benchmark Reports 2018–2019
-
-**Source:** Jobvite (jobvite.com)
-**Data:** Analysis of platform data from Jobvite ATS customers
-**Period:** 2018–2019
-**Best for:** Funnel conversion rates, time-to-fill benchmarks, source of hire data, quality of hire measurement, recruiter performance metrics
-
 ---
+title: Jobvite Recruiting Benchmark Reports 2018–2019
+source: Jobvite
+year: 2019
+---
+
+# Jobvite Recruiting Benchmark Reports 2018–2019
 
 ## 2018 Recruiting Benchmark Report
 

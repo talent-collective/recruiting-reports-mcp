@@ -1,11 +1,11 @@
-# PwC Workforce of the Future & Global Workforce Hopes and Fears — 2018–2024
-
-**Source:** PwC Global (pwc.com/gx/en/workforce)
-**Data:** Large-scale global workforce surveys; Workforce of the Future series begun 2007; Hopes and Fears survey launched 2021
-**Period:** 2018–2024
-**Best for:** Worker sentiment on future of work, job change intentions, salary expectations, AI optimism vs. anxiety, Gen Z workplace attitudes, purpose/social conscience, burnout, skills development
-
 ---
+title: "PwC Workforce of the Future & Global Workforce Hopes and Fears — 2018–2024"
+source: PwC
+year: 2022
+sample_size: Online survey conducted March 2022
+---
+
+# PwC Workforce of the Future & Global Workforce Hopes and Fears — 2018–2024
 
 ## 2018 — "Workforce of the Future: The Competing Forces Shaping 2030"
 

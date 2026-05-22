@@ -1,11 +1,14 @@
-# Ashby — Did Hiring Pick Up in 2025?
-
-**Source:** ashbyhq.com/talent-trends-report  
-**Data:** Fixed cohort of hundreds of companies tracked across 8 consecutive quarters  
-**Period:** 2024–2025 (Q1 2024 as baseline)  
-**Best for:** 2025 hiring recovery signals, company-size divergence, EMEA vs. North America comparison
-
 ---
+title: Ashby — Did Hiring Pick Up in 2025?
+source: Ashby
+year: 2025
+data_period_start: "2024-01"
+data_period_end: "2025-12"
+sample_size: Fixed cohort of hundreds of companies tracked across 8 consecutive quarters
+best_for: "2025 hiring recovery signals, company-size divergence, EMEA vs. North America comparison"
+---
+
+# Ashby — Did Hiring Pick Up in 2025?
 
 ## Overall Hiring Trend
 

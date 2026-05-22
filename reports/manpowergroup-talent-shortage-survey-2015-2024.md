@@ -1,11 +1,10 @@
-# ManpowerGroup Talent Shortage Survey — Annual Series 2015–2024
-
-**Source:** ManpowerGroup (manpowergroup.com)
-**Data:** Annual global survey of employers; approximately 39,000–42,000 employers in 41–43 countries
-**Period:** 2015–2024 (annual reports since 2006)
-**Best for:** Global and country-level talent shortage trends, hardest-to-fill roles, employer response strategies, skills gap data, historical shortage trajectory
-
 ---
+title: ManpowerGroup Talent Shortage Survey — Annual Series 2015–2024
+source: ManpowerGroup
+year: 2024
+---
+
+# ManpowerGroup Talent Shortage Survey — Annual Series 2015–2024
 
 ## Historical Trend at a Glance
 

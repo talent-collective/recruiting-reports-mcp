@@ -1,11 +1,14 @@
-# Ashby — Are Referred Candidates More Likely to Be Hired?
-
-**Source:** ashbyhq.com/talent-trends-report  
-**Data:** 38M+ applications across 93K jobs  
-**Period:** January 2021 – December 2024  
-**Best for:** Referral conversion rates vs. other sources, application source breakdown, offer rate trends
-
 ---
+title: Ashby — Are Referred Candidates More Likely to Be Hired?
+source: Ashby
+year: 2024
+data_period_start: "2021-01"
+data_period_end: "2024-12"
+sample_size: "38M+ applications across 93K jobs"
+best_for: "Referral conversion rates vs. other sources, application source breakdown, offer rate trends"
+---
+
+# Ashby — Are Referred Candidates More Likely to Be Hired?
 
 ## Application Source Breakdown
 

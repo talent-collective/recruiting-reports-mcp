@@ -1,8 +1,11 @@
-# LinkedIn: 2026 Global Talent Report
-**Source:** LinkedIn Talent Solutions (released early 2026)  
-**Data:** 1.2B+ LinkedIn members, 12B+ data points
-
 ---
+title: "LinkedIn: 2026 Global Talent Report"
+source: LinkedIn
+year: 2026
+sample_size: "1.2B+ LinkedIn members, 12B+ data points"
+---
+
+# LinkedIn: 2026 Global Talent Report
 
 ## Key Findings
 

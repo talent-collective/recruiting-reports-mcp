@@ -1,9 +1,12 @@
-# SHRM: 2026 Recruiting Executives — Priorities and Perspectives
-**Source:** https://www.shrm.org/topics-tools/research/recruiting-executives-priorities-perspectives-2026/repp26-full-report
-**Published:** 2026
-**Methodology:** 298 heads of recruiting surveyed Jan 21–Feb 4, 2026 via SHRM Voice of Work Research Panel. Required to lead their org's recruitment function. Multiple industries, sectors, sizes, and locations. Data not weighted.
-
 ---
+title: "SHRM: 2026 Recruiting Executives — Priorities and Perspectives"
+source: SHRM
+year: 2026
+url: "https://www.shrm.org/topics-tools/research/recruiting-executives-priorities-perspectives-2026/repp26-full-report"
+sample_size: "298 heads of recruiting surveyed Jan 21–Feb 4, 2026 via SHRM Voice of Work Research Panel. Required to lead their org's recruitment function. Multiple industries, sectors, sizes, and locations. Data not weighted."
+---
+
+# SHRM: 2026 Recruiting Executives — Priorities and Perspectives
 
 ## Key Takeaways
 

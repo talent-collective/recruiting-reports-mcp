@@ -1,8 +1,8 @@
 # Recruiting Reports MCP
 
-A free, always-on knowledge base of 22+ recruiting industry benchmark reports — queryable through Claude using natural language.
+A free, always-on knowledge base of 30+ recruiting industry benchmark reports — queryable through Claude using natural language.
 
-Sources include Ashby, Gem, LinkedIn, SHRM, iCIMS, Korn Ferry, HireVue, and more. A weekly agent adds new credible reports automatically.
+Sources include Ashby, Gem, LinkedIn, SHRM, iCIMS, Korn Ferry, HireVue, Greenhouse, Bullhorn, Mercer, Phenom, SignalFire, Criteria Corp, Employ, and Josh Bersin Company. A weekly agent adds new credible reports automatically.
 
 ---
 
@@ -13,6 +13,7 @@ Sources include Ashby, Gem, LinkedIn, SHRM, iCIMS, Korn Ferry, HireVue, and more
 - *"Find quotes on AI in hiring from 2026 reports"*
 - *"How does recruiter capacity compare across company sizes?"*
 - *"What does Gem's data say about outreach reply rates?"*
+- *"Show me all Ashby reports from 2024"* (uses the structured `filter_reports` tool)
 
 ---
 
@@ -57,22 +58,9 @@ In any session with the connector enabled, ask questions about recruiting benchm
 
 ## Reports included
 
-| Source | Report |
-|--------|--------|
-| Ashby | Recruiting Operations Benchmarks 2026 |
-| Ashby | Recruiter Productivity 2025 |
-| Ashby | State of Startup Hiring 2026 |
-| Ashby | 12 deep-dive topic reports (sourcing, coordination, offers, ghosting, referrals, AI notetaking, and more) |
-| Gem | Recruiting Benchmarks 2026 |
-| Gem | Email Outreach Benchmarks 2026 |
-| LinkedIn | Global Talent Report 2026 |
-| SHRM | Recruiting Executives Priorities & Perspectives 2026 |
-| Employ Inc. | Hiring Benchmarks 2026 |
-| iCIMS | Workforce Reports 2026 |
-| Korn Ferry | TA Trends 2026 |
-| HireVue | AI in Hiring 2026 |
+See [reports/00-INDEX.md](reports/00-INDEX.md) for the full list — organized by source and year, with sample sizes and a Quick Reference table of headline benchmarks.
 
-New reports are added weekly via an automated agent.
+New reports are added weekly via an automated agent. To contribute one, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ---
 
@@ -107,6 +95,14 @@ PORT=8080 node server.js
 ```
 
 Test: `curl http://localhost:3000/health`
+
+**Run tests:**
+
+```bash
+npm test
+```
+
+**Add a new report:** see [CONTRIBUTING.md](CONTRIBUTING.md) for the frontmatter schema and the canonical source vocabulary.
 
 ---
 

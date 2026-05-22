@@ -1,11 +1,13 @@
-# Employ Inc.: 2026 Hiring Benchmarks Report — "Redefining What Good Looks Like"
-**Source:** https://www.employinc.com/employ-benchmarks-report  
-**Published:** January 7, 2026  
-**Data:** 6,640 customers across Jobvite, Lever, and JazzHR  
-**Segments:** Small (0–249 employees), Mid-market (250–999), Enterprise (1,000+)  
-**Industries:** Retail, hospitality, manufacturing, software & technology, business services
-
 ---
+title: "Employ Inc.: 2026 Hiring Benchmarks Report — \"Redefining What Good Looks Like\""
+source: Employ
+year: 2026
+published: "2026-01-07"
+url: "https://www.employinc.com/employ-benchmarks-report"
+sample_size: "6,640 customers across Jobvite, Lever, and JazzHR"
+---
+
+# Employ Inc.: 2026 Hiring Benchmarks Report — "Redefining What Good Looks Like"
 
 ## Key Findings
 

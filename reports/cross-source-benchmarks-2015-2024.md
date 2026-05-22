@@ -1,10 +1,14 @@
-# Cross-Source Recruiting Benchmarks — Historical Reference 2015–2024
-
-**Compiled from:** SHRM, Bersin/Deloitte, Jobvite, Greenhouse, iCIMS, LinkedIn, ManpowerGroup, Glassdoor, Talent Board, McKinsey, PwC, Mercer, CareerBuilder, Indeed Hiring Lab, WEF, Korn Ferry
-**Period:** 2015–2024
-**Best for:** Year-over-year trend comparisons, sourcing benchmarks across studies, cost-per-hire history, time-to-fill history, talent shortage trajectory, social media adoption in recruiting
-
 ---
+title: Cross-Source Recruiting Benchmarks — Historical Reference 2015–2024
+source: Multiple
+year: 2024
+data_period_start: "2015-01"
+data_period_end: "2024-12"
+sample_size: "Aggregated benchmarks from SHRM, Deloitte, CareerBuilder, ManpowerGroup, Talent Board, LinkedIn, and others"
+best_for: "Historical cost-per-hire, time-to-fill, talent shortage, attrition, quit rate, candidate experience trends across multiple sources"
+---
+
+# Cross-Source Recruiting Benchmarks — Historical Reference 2015–2024
 
 ## Cost-per-Hire (Historical)
 

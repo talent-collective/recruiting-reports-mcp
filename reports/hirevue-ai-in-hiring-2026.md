@@ -1,11 +1,13 @@
-# HireVue — 2026 Global AI in Hiring Report
-
-**Source:** https://www.hirevue.com/resources/report/2026-global-ai-in-hiring-report  
-**Published:** 2026  
-**Data:** 3,100+ hiring managers surveyed globally  
-**Best for:** AI adoption in hiring, candidate AI usage, trust gaps, transparency requirements
-
 ---
+title: HireVue — 2026 Global AI in Hiring Report
+source: HireVue
+year: 2026
+url: "https://www.hirevue.com/resources/report/2026-global-ai-in-hiring-report"
+sample_size: "3,100+ hiring managers surveyed globally"
+best_for: "AI adoption in hiring, candidate AI usage, trust gaps, transparency requirements"
+---
+
+# HireVue — 2026 Global AI in Hiring Report
 
 ## Methodology
 

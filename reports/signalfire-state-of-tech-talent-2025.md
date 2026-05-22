@@ -1,8 +1,13 @@
+---
+title: SignalFire — State of Tech Talent Report 2025
+source: SignalFire
+year: 2025
+published: "2025-05-20"
+url: "https://www.signalfire.com/blog/signalfire-state-of-talent-report-2025"
+sample_size: Beacon AI platform tracking 650M+ professionals and 80M+ organizations
+---
+
 # SignalFire — State of Tech Talent Report 2025
-**Source:** SignalFire (Venture Capital)
-**Published:** May 20, 2025
-**Data:** Beacon AI platform tracking 650M+ professionals and 80M+ organizations
-**URL:** https://www.signalfire.com/blog/signalfire-state-of-talent-report-2025
 
 ## Methodology
 Proprietary Beacon AI platform data tracking 650+ million professionals and 80+ million organizations. Big Tech defined as top 15 companies by market cap. Startups defined as top 100 VC firms, Seed-Series C rounds in previous 4 years. Top CS grads = top 20 engineering programs per US News rankings.

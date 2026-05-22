@@ -1,11 +1,14 @@
-# Ashby — How Many Hires Come From Inbound?
-
-**Source:** ashbyhq.com/talent-trends-report  
-**Data:** ~250,000 hires  
-**Period:** January 2021 – June 2025  
-**Best for:** Source-of-hire benchmarks, inbound vs. sourcing vs. referral split, company size patterns
-
 ---
+title: Ashby — How Many Hires Come From Inbound?
+source: Ashby
+year: 2025
+data_period_start: "2021-01"
+data_period_end: "2025-12"
+sample_size: "~250,000 hires"
+best_for: "Source-of-hire benchmarks, inbound vs. sourcing vs. referral split, company size patterns"
+---
+
+# Ashby — How Many Hires Come From Inbound?
 
 ## Inbound Hiring Trends (2021–2025)
 
