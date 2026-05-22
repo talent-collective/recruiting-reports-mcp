@@ -2,7 +2,6 @@
 title: "Ashby — What Is a Recruiter's Capacity?"
 source: Ashby
 year: 2025
-topics: [coordination]
 data_period_start: "2024-01"
 data_period_end: "2025-12"
 sample_size: "26M+ interactions; 100K jobs"

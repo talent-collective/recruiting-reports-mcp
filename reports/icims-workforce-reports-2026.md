@@ -3,7 +3,6 @@ title: "iCIMS: 2026 Workforce Reports (Monthly Series)"
 source: iCIMS
 year: 2026
 published: "2026-01-01"
-topics: [labor-market, executive-priorities]
 url: "https://www.icims.com/january-2026-workforce-report/ (and Feb/Mar issues)"
 sample_size: "iCIMS platform data + surveys of 1,000 U.S. job seekers and 250 TA leaders"
 ---

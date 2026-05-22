@@ -2,7 +2,6 @@
 title: Ashby — Candidate Sourcing Report
 source: Ashby
 year: 2024
-topics: [sourcing, outreach]
 data_period_start: "2022-01"
 data_period_end: "2024-12"
 sample_size: "500K+ email sequences"

@@ -2,7 +2,6 @@
 title: HireVue — 2026 Global AI in Hiring Report
 source: HireVue
 year: 2026
-topics: [ai-adoption]
 url: "https://www.hirevue.com/resources/report/2026-global-ai-in-hiring-report"
 sample_size: "3,100+ hiring managers surveyed globally"
 best_for: "AI adoption in hiring, candidate AI usage, trust gaps, transparency requirements"

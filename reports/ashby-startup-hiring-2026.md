@@ -3,7 +3,6 @@ title: "Ashby: The State of Startup Hiring | 2026 Talent Trends Report"
 source: Ashby
 year: 2026
 published: "2026-02-23"
-topics: [startup-hiring, ai-adoption, source-of-hire, offer-acceptance]
 url: "https://www.ashbyhq.com/talent-trends-report/reports/startup-hiring"
 author: Joel Westmark
 sample_size: "1,200+ venture-backed startups globally, 32K hires, 11M applications (mostly 2025 data)"

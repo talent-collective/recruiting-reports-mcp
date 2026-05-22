@@ -3,7 +3,6 @@ title: "Phenom — State of AI & Automation for HR: 2026 Benchmarks Report"
 source: Phenom
 year: 2025
 published: "2025-12-16"
-topics: [ai-tools, ai-adoption, executive-priorities]
 url: "https://www.phenom.com/press-release/ai-automation-phenom-report-hiring"
 sample_size: Nearly 500 organizations across 12+ industries; supplemented by survey of 100+ HR professionals
 ---

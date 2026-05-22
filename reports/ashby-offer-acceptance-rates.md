@@ -2,7 +2,6 @@
 title: Ashby — Offer Acceptance Rates Report
 source: Ashby
 year: 2024
-topics: [offer-acceptance]
 data_period_start: "2021-01"
 data_period_end: "2024-12"
 sample_size: "230K applications reaching offer stage"

@@ -3,7 +3,6 @@ title: "Employ Inc.: 2026 Hiring Benchmarks Report — \"Redefining What Good Lo
 source: Employ
 year: 2026
 published: "2026-01-07"
-topics: [time-to-fill, candidate-experience, application-volume]
 url: "https://www.employinc.com/employ-benchmarks-report"
 sample_size: "6,640 customers across Jobvite, Lever, and JazzHR"
 ---

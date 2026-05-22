@@ -3,7 +3,6 @@ title: "Ashby: Recruiter Productivity | 2025 Talent Trends Report"
 source: Ashby
 year: 2025
 published: "2025-01-07"
-topics: [recruiter-productivity, labor-market]
 url: "https://www.ashbyhq.com/talent-trends-report/reports/2023-recruiter-productivity-trends-report"
 author: Kevin Connolly
 sample_size: "109M+ applications, 247K jobs, January 2021–March 2026"

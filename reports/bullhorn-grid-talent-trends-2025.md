@@ -3,7 +3,6 @@ title: Bullhorn — GRID 2025 Talent Trends Report
 source: Bullhorn
 year: 2025
 published: "2025-06-01"
-topics: [labor-market, sourcing, ai-adoption]
 url: "https://www.bullhorn.com/grid/grid-2025-talent-trends-report/"
 sample_size: "2,766 respondents who worked with recruitment firms in past 3 years; global coverage across North America, UK/Ireland, DACH, Benelux, APAC"
 ---

@@ -2,7 +2,6 @@
 title: Ashby — Are Referred Candidates More Likely to Be Hired?
 source: Ashby
 year: 2024
-topics: [funnel-metrics, referrals]
 data_period_start: "2021-01"
 data_period_end: "2024-12"
 sample_size: "38M+ applications across 93K jobs"

@@ -3,7 +3,6 @@ title: Ashby — Recruiting Coordination Report
 source: Ashby
 year: 2024
 published: "2024-10-22"
-topics: [coordination]
 author: "Kevin Connolly, Product & Data"
 data_period_start: "2020-01"
 data_period_end: "2024-12"

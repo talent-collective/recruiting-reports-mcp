@@ -14,7 +14,6 @@ Sources include Ashby, Gem, LinkedIn, SHRM, iCIMS, Korn Ferry, HireVue, Greenhou
 - *"How does recruiter capacity compare across company sizes?"*
 - *"What does Gem's data say about outreach reply rates?"*
 - *"Show me all Ashby reports from 2024"* (uses the structured `filter_reports` tool)
-- *"Which reports cover AI adoption?"* (filters by topic tag)
 
 ---
 
@@ -103,7 +102,7 @@ Test: `curl http://localhost:3000/health`
 npm test
 ```
 
-**Add a new report:** see [CONTRIBUTING.md](CONTRIBUTING.md) for the frontmatter schema and the source/topic vocabulary.
+**Add a new report:** see [CONTRIBUTING.md](CONTRIBUTING.md) for the frontmatter schema and the canonical source vocabulary.
 
 ---
 

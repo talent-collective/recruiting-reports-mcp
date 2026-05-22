@@ -2,7 +2,6 @@
 title: Ashby — How Common Are Ghost Jobs?
 source: Ashby
 year: 2024
-topics: [ghost-jobs]
 data_period_start: "2021-01"
 data_period_end: "2024-12"
 sample_size: "22,000+ job postings"

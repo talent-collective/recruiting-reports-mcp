@@ -3,7 +3,6 @@ title: SignalFire — State of Tech Talent Report 2025
 source: SignalFire
 year: 2025
 published: "2025-05-20"
-topics: [startup-hiring, labor-market]
 url: "https://www.signalfire.com/blog/signalfire-state-of-talent-report-2025"
 sample_size: Beacon AI platform tracking 650M+ professionals and 80M+ organizations
 ---

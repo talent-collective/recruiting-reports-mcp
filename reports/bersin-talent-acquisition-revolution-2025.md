@@ -3,7 +3,6 @@ title: "Josh Bersin Company — The Talent Acquisition Revolution: How AI is Tra
 source: Josh Bersin Company
 year: 2025
 published: "2025-09-16"
-topics: [ai-adoption, ai-tools, labor-market]
 url: "https://joshbersin.com/talent-acquisition-factbook/"
 sample_size: Global market analysis; case studies across multiple industries
 ---

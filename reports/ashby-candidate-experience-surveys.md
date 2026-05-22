@@ -2,7 +2,6 @@
 title: Ashby — Candidate Experience Surveys Report
 source: Ashby
 year: 2023
-topics: [candidate-experience]
 data_period_start: "2022-01"
 data_period_end: "2023-12"
 sample_size: "67,400 survey requests; 11,900 responses"

@@ -2,7 +2,6 @@
 title: Ashby — Applications Per Job Report
 source: Ashby
 year: 2024
-topics: [application-volume]
 data_period_start: "2021-01"
 data_period_end: "2024-12"
 sample_size: ~13M applications (original); updated through January 2024

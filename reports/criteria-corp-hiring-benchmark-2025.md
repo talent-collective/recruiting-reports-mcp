@@ -2,7 +2,6 @@
 title: Criteria Corp — Hiring Benchmark Report 2024-2025
 source: Criteria Corp
 year: 2024
-topics: [labor-market, executive-priorities, candidate-experience]
 url: "https://www.criteriacorp.com/research/2024-2025-hiring-benchmark-report"
 sample_size: "425+ hiring professionals surveyed globally, primarily US, Australia, and Canada (July 2024)"
 ---

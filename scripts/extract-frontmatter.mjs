@@ -40,29 +40,6 @@ const SOURCE_MAP = [
   [/\bgem\b/i,                "Gem"],
 ];
 
-// Topic rules: a tag is applied if any of its regexes match the title,
-// "Best for" line, or the first ~600 chars of body text. Cap at 4 tags.
-const TOPIC_RULES = [
-  ["time-to-fill",          [/time[\s-]to[\s-]fill/i]],
-  ["time-to-hire",          [/time[\s-]to[\s-]hire/i]],
-  ["funnel-metrics",        [/funnel/i, /conversion rate/i, /pipeline metric/i]],
-  ["source-of-hire",        [/source[\s-]of[\s-]hire/i, /inbound (hire|recruit)/i, /hires come from/i]],
-  ["sourcing",              [/\bsourcing\b/i, /sourced candidate/i]],
-  ["outreach",              [/email outreach/i, /\boutreach\b/i, /email sequence/i]],
-  ["referrals",             [/\breferral/i, /referred candidate/i]],
-  ["offer-acceptance",      [/offer acceptance/i, /\bOAR\b/]],
-  ["recruiter-productivity",[/recruiter productivity/i, /recruiter capacity/i, /hires per recruiter/i, /recruiter workload/i]],
-  ["coordination",          [/coordinator/i, /scheduling/i, /\bcoordination\b/i]],
-  ["candidate-experience",  [/candidate experience/i, /candidate NPS/i, /candidate survey/i]],
-  ["application-volume",    [/applications per job/i, /application volume/i, /application question/i]],
-  ["ghost-jobs",            [/ghost job/i, /fill rate/i, /unfilled position/i]],
-  ["startup-hiring",        [/startup hiring/i, /venture-backed/i, /\bstartups?\b/i]],
-  ["labor-market",          [/labor market/i, /job market/i, /workforce/i, /hiring (recovery|trend|pick up)/i, /talent trend/i, /tech talent/i, /new grad/i]],
-  ["executive-priorities",  [/\bexecutive priorit/i, /TA leader/i, /head[s]? of recruiting/i, /HR leader.*priorit/i, /\bC-suite/i]],
-  ["ai-tools",              [/AI notetaking/i, /autonomous agent/i, /AI assistant/i, /AI screening/i, /generative AI/i, /\bgen AI\b/i, /AI\s*(&|and)\s*Automation/i, /AI automation/i]],
-  ["ai-adoption",           [/AI adoption/i, /AI in (hiring|recruit|HR|TA)/i, /AI[- ]powered/i, /AI transform/i, /artificial intelligence/i, /\bAI\s+(use|usage|using|adopt)/i]],
-];
-
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
 function matchSource(text) {
@@ -70,31 +47,6 @@ function matchSource(text) {
     if (re.test(text)) return canonical;
   }
   return null;
-}
-
-// Per-file topic overrides for cases where the keyword heuristic gets it wrong.
-// Keyed by basename without extension. Values fully replace the auto-detected tags.
-const TOPIC_OVERRIDES = {
-  "ashby-startup-hiring-2026":          ["startup-hiring", "ai-adoption", "source-of-hire", "offer-acceptance"],
-  "ashby-inbound-hires":                ["source-of-hire", "referrals"],
-  "bersin-talent-acquisition-revolution-2025": ["ai-adoption", "ai-tools", "labor-market"],
-  "bullhorn-grid-talent-trends-2025":   ["labor-market", "sourcing", "ai-adoption"],
-  "criteria-corp-hiring-benchmark-2025":["labor-market", "executive-priorities", "candidate-experience"],
-  "gem-recruiting-benchmarks-2026":     ["funnel-metrics", "recruiter-productivity", "sourcing", "offer-acceptance"],
-  "linkedin-future-of-recruiting-2025": ["ai-adoption", "ai-tools", "sourcing", "executive-priorities"],
-  "linkedin-global-talent-report-2026": ["ai-adoption", "labor-market", "executive-priorities"],
-  "mercer-global-talent-trends-2025":   ["labor-market", "executive-priorities", "ai-adoption"],
-  "phenom-ai-automation-hr-benchmarks-2026": ["ai-tools", "ai-adoption", "executive-priorities"],
-};
-
-function inferTopics({ title, bestFor, bodyStart, basename: bn }) {
-  if (bn && TOPIC_OVERRIDES[bn]) return TOPIC_OVERRIDES[bn];
-  const haystack = `${title}\n${bestFor}\n${bodyStart}`;
-  const tags = [];
-  for (const [tag, patterns] of TOPIC_RULES) {
-    if (patterns.some(p => p.test(haystack))) tags.push(tag);
-  }
-  return tags.slice(0, 4);
 }
 
 const MONTHS = {
@@ -167,7 +119,7 @@ function yamlValue(v) {
 function buildFrontmatter(fm) {
   const lines = ["---"];
   const orderedKeys = [
-    "title", "source", "year", "published", "topics",
+    "title", "source", "year", "published",
     "url", "author", "data_period_start", "data_period_end",
     "sample_size", "best_for",
   ];
@@ -257,14 +209,6 @@ function processFile(path) {
     if (m) year = parseInt(m[1], 10);
   }
 
-  const bodyStart = raw.slice(0, 1200);
-  const topics = inferTopics({
-    title: title || "",
-    bestFor: bestForRaw || methodologyRaw || "",
-    bodyStart,
-    basename: basename(path, ".md"),
-  });
-
   // For SHRM file where "Methodology:" doubles as Data, prefer it as sample_size
   const sampleSize = dataRaw || methodologyRaw;
 
@@ -273,7 +217,6 @@ function processFile(path) {
     source,
     year,
     published,
-    topics,
     url: extractUrl(sourceRaw, urlRaw),
     author: authorRaw,
     data_period_start: dataStart,
@@ -289,7 +232,6 @@ function processFile(path) {
   if (!fm.title) missing.push("title");
   if (!fm.source) missing.push("source");
   if (!fm.year) missing.push("year");
-  if (!fm.topics || fm.topics.length === 0) missing.push("topics");
 
   if (DRY) {
     console.log(`\n===== ${basename(path)} =====`);

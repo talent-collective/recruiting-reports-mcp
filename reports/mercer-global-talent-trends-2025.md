@@ -2,7 +2,6 @@
 title: Mercer — Global Talent Trends 2024-2025
 source: Mercer
 year: 2025
-topics: [labor-market, executive-priorities, ai-adoption]
 url: "https://www.mercer.com/insights/people-strategy/future-of-work/global-talent-trends/"
 sample_size: "Nearly 12,000 respondents including executives, HR leaders, employees, and investors across 16 geographies and 16 industries"
 ---

@@ -14,7 +14,6 @@ Thanks for considering a contribution. This project grows by adding new recruiti
    source: Gem
    year: 2026
    published: 2026-03-15           # optional, ISO date
-   topics: [funnel-metrics, recruiter-productivity, sourcing]
    url: https://www.gem.com/...    # optional
    author: Jane Smith              # optional
    data_period_start: 2024-01      # optional
@@ -42,7 +41,6 @@ If your report came with prose-style metadata at the top (`**Source:** ...`, `**
 | `title` | yes | string | Full title of the report. |
 | `source` | yes | string | Canonical vendor/publisher name. Must match an entry in the source vocabulary below. |
 | `year` | yes | int | The report's *edition* year (cover year), not data range. Use `data_period_*` for ranges. |
-| `topics` | yes | string[] | Non-empty list. Every tag must be in the topic taxonomy below. |
 | `published` | no | ISO date | `YYYY-MM-DD`. Leave out if only the year is known. |
 | `url` | no | string | Canonical link to the source. |
 | `author` | no | string | Free text. |
@@ -56,12 +54,6 @@ If your report came with prose-style metadata at the top (`**Source:** ...`, `**
 Ashby · Bullhorn · Criteria Corp · Employ · Gem · Greenhouse · HireVue · iCIMS · Josh Bersin Company · Korn Ferry · LinkedIn · Mercer · Phenom · SHRM · SignalFire
 
 If you need to add a new source, update `VALID_SOURCES` in [test/frontmatter.test.mjs](test/frontmatter.test.mjs) and the `SOURCE_MAP` in [scripts/extract-frontmatter.mjs](scripts/extract-frontmatter.mjs).
-
-### Topic taxonomy
-
-`ai-adoption` · `ai-tools` · `application-volume` · `candidate-experience` · `coordination` · `executive-priorities` · `funnel-metrics` · `ghost-jobs` · `labor-market` · `offer-acceptance` · `outreach` · `recruiter-productivity` · `referrals` · `source-of-hire` · `sourcing` · `startup-hiring` · `time-to-fill` · `time-to-hire`
-
-Prefer reusing existing tags over inventing new ones — controlled vocabulary is what makes `filter_reports` useful. If you genuinely need a new tag, add it to `VALID_TOPICS` in [test/frontmatter.test.mjs](test/frontmatter.test.mjs).
 
 ## Running locally
 

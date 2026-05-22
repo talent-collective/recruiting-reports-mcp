@@ -2,7 +2,6 @@
 title: Ashby — How Many Hires Come From Inbound?
 source: Ashby
 year: 2025
-topics: [source-of-hire, referrals]
 data_period_start: "2021-01"
 data_period_end: "2025-12"
 sample_size: "~250,000 hires"

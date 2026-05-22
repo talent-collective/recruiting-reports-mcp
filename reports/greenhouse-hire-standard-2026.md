@@ -3,7 +3,6 @@ title: "Greenhouse — The Hire Standard: Recruiting Benchmarks 2026"
 source: Greenhouse
 year: 2026
 published: "2026-03-01"
-topics: [time-to-fill, recruiter-productivity, application-volume]
 url: "https://www.greenhouse.com/recruiting-benchmarks"
 sample_size: "6,000+ companies, 640M+ applications (2022-2025)"
 ---

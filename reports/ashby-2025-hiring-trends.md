@@ -2,7 +2,6 @@
 title: Ashby — Did Hiring Pick Up in 2025?
 source: Ashby
 year: 2025
-topics: [labor-market]
 data_period_start: "2024-01"
 data_period_end: "2025-12"
 sample_size: Fixed cohort of hundreds of companies tracked across 8 consecutive quarters

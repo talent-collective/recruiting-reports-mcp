@@ -3,7 +3,6 @@ title: Ashby — Are Jobs Asking More Application Questions?
 source: Ashby
 year: 2025
 published: "2025-03-18"
-topics: [application-volume]
 data_period_start: "2021-01"
 data_period_end: "2024-12"
 sample_size: "4.8M+ applications"

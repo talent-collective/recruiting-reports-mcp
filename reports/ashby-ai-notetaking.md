@@ -3,7 +3,6 @@ title: Ashby — Does AI Notetaking Improve Feedback Forms?
 source: Ashby
 year: 2025
 published: "2025-12-12"
-topics: [coordination, ai-tools]
 best_for: "AI notetaking ROI, scorecard submission speed, feedback quality improvement"
 ---
 

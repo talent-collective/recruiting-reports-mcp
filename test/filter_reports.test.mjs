@@ -39,14 +39,6 @@ test("filter by year_min and year_max", () => {
   }
 });
 
-test("filter by topic", () => {
-  const matches = filterReports({ topic: "ai-adoption" });
-  assert.ok(matches.length >= 3, `expected several ai-adoption reports, got ${matches.length}`);
-  for (const r of matches) {
-    assert.ok(r.frontmatter.topics.includes("ai-adoption"));
-  }
-});
-
 test("filters AND together", () => {
   const ashbyOnly = filterReports({ source: "Ashby" }).length;
   const ashby2024 = filterReports({ source: "Ashby", year: 2024 }).length;
@@ -60,7 +52,6 @@ test("filters AND together", () => {
 test("nonsense filters return empty result", () => {
   assert.equal(filterReports({ source: "DoesNotExist" }).length, 0);
   assert.equal(filterReports({ year: 1999 }).length, 0);
-  assert.equal(filterReports({ topic: "not-a-real-tag" }).length, 0);
 });
 
 test("search_reports matches author from frontmatter (was a regression)", () => {

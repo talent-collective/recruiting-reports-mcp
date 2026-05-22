@@ -2,7 +2,6 @@
 title: "LinkedIn: 2026 Global Talent Report"
 source: LinkedIn
 year: 2026
-topics: [ai-adoption, labor-market, executive-priorities]
 sample_size: "1.2B+ LinkedIn members, 12B+ data points"
 ---
 

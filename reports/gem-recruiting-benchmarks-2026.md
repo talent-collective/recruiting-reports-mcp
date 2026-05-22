@@ -2,7 +2,6 @@
 title: Gem — 2026 Recruiting Benchmarks Report
 source: Gem
 year: 2026
-topics: [funnel-metrics, recruiter-productivity, sourcing, offer-acceptance]
 url: "https://www.gem.com/resource/recruiting-benchmarks"
 sample_size: "165M applications, 1.2M hires, 15M candidates"
 best_for: "Recruiter workload benchmarks, sourcing channel ROI, offer acceptance rates, interview volume by role type"

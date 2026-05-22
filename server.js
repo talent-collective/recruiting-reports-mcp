@@ -3,7 +3,7 @@
  *
  * Exposes 30+ industry recruiting benchmark reports as searchable MCP tools.
  * Reports have YAML frontmatter (see CONTRIBUTING.md) so they can be filtered
- * structurally (source / year / topic) as well as full-text searched.
+ * structurally (source, year) as well as full-text searched.
  *
  * Usage:
  *   node server.js            → HTTP server on port 3000 (or $PORT)
@@ -85,8 +85,6 @@ export function parsedReports() {
     const { frontmatter, body } = parseFrontmatter(raw);
     // searchText prepends descriptive metadata so fields that only live in
     // frontmatter (author, best_for, sample_size) are still keyword-searchable.
-    // Topic tags are intentionally excluded — they're identifiers for
-    // filter_reports, not phrases users would type into search_reports.
     const metaLines = [
       frontmatter.title && `Title: ${frontmatter.title}`,
       frontmatter.author && `Author: ${frontmatter.author}`,
@@ -150,7 +148,7 @@ export function searchAcrossReports(query) {
   return `# Results for '${query}' (${results.length} report(s))\n\n${results.join("\n\n---\n\n")}`;
 }
 
-export function filterReports({ source, year, year_min, year_max, topic } = {}) {
+export function filterReports({ source, year, year_min, year_max } = {}) {
   const reports = Object.values(parsedReports());
   return reports.filter(r => {
     const fm = r.frontmatter;
@@ -161,21 +159,16 @@ export function filterReports({ source, year, year_min, year_max, topic } = {}) 
     if (year != null && fm.year !== year) return false;
     if (year_min != null && (fm.year == null || fm.year < year_min)) return false;
     if (year_max != null && (fm.year == null || fm.year > year_max)) return false;
-    if (topic) {
-      const t = topic.toLowerCase();
-      if (!Array.isArray(fm.topics) || !fm.topics.map(x => x.toLowerCase()).includes(t)) return false;
-    }
     return true;
   });
 }
 
-function describeFilters({ source, year, year_min, year_max, topic }) {
+function describeFilters({ source, year, year_min, year_max }) {
   const parts = [];
   if (source) parts.push(`source=${source}`);
   if (year != null) parts.push(`year=${year}`);
   if (year_min != null) parts.push(`year_min=${year_min}`);
   if (year_max != null) parts.push(`year_max=${year_max}`);
-  if (topic) parts.push(`topic=${topic}`);
   return parts.length ? parts.join(", ") : "no filters";
 }
 
@@ -183,23 +176,21 @@ function renderFilterResults(matches, filters) {
   if (matches.length === 0) {
     const reports = parsedReports();
     const sources = [...new Set(Object.values(reports).map(r => r.frontmatter.source).filter(Boolean))].sort();
-    const topics = [...new Set(Object.values(reports).flatMap(r => r.frontmatter.topics || []))].sort();
-    return `No reports match (${describeFilters(filters)}).\n\nAvailable sources: ${sources.join(", ")}\nAvailable topics: ${topics.join(", ")}`;
+    return `No reports match (${describeFilters(filters)}).\n\nAvailable sources: ${sources.join(", ")}`;
   }
   const rows = matches
     .sort((a, b) => (b.frontmatter.year || 0) - (a.frontmatter.year || 0) || a.name.localeCompare(b.name))
     .map(r => {
       const fm = r.frontmatter;
-      const topics = (fm.topics || []).join(", ");
       const sample = (fm.sample_size || "").replace(/\|/g, "\\|");
-      return `| ${r.name} | ${fm.title || r.name} | ${fm.source || ""} | ${fm.year ?? ""} | ${topics} | ${sample} |`;
+      return `| ${r.name} | ${fm.title || r.name} | ${fm.source || ""} | ${fm.year ?? ""} | ${sample} |`;
     })
     .join("\n");
   return [
     `# ${matches.length} report(s) match (${describeFilters(filters)})`,
     "",
-    "| Name | Title | Source | Year | Topics | Sample size |",
-    "|------|-------|--------|------|--------|-------------|",
+    "| Name | Title | Source | Year | Sample size |",
+    "|------|-------|--------|------|-------------|",
     rows,
     "",
     "Use `read_report` with one of these names to read the full report.",
@@ -216,16 +207,10 @@ export function renderIndex() {
   const ashby = reports.filter(r => r.frontmatter.source === "Ashby");
   const other = reports.filter(r => r.frontmatter.source !== "Ashby");
 
-  // Flagship Ashby reports = year >= 2025 AND topics overlap with funnel-style
-  // tags. Everything else goes in the deep-dive section.
-  const FLAGSHIP_TOPICS = new Set([
-    "funnel-metrics", "time-to-fill", "time-to-hire", "recruiter-productivity", "startup-hiring",
-  ]);
-  const ashbyFlagship = ashby.filter(r => {
-    const y = r.frontmatter.year || 0;
-    const topics = r.frontmatter.topics || [];
-    return y >= 2025 && topics.some(t => FLAGSHIP_TOPICS.has(t));
-  });
+  // Flagship Ashby reports are the annual "Benchmarks" / "Talent Trends Report"
+  // editions (titled accordingly). Everything else is a narrow deep-dive.
+  const FLAGSHIP_TITLE_RE = /benchmark|trends report/i;
+  const ashbyFlagship = ashby.filter(r => FLAGSHIP_TITLE_RE.test(r.frontmatter.title || ""));
   const ashbyDeepDive = ashby.filter(r => !ashbyFlagship.includes(r));
 
   const core = [...other, ...ashbyFlagship];
@@ -299,9 +284,6 @@ function buildInstructions() {
   const sources = [...new Set(Object.values(reports).map(r => r.frontmatter.source).filter(Boolean))].sort();
   const years = [...new Set(Object.values(reports).map(r => r.frontmatter.year).filter(Boolean))].sort();
   const yearRange = years.length ? `${years[0]}–${years[years.length - 1]}` : "";
-  const topics = [...new Set(
-    Object.values(reports).flatMap(r => r.frontmatter.topics || [])
-  )].sort();
 
   return `You have access to ${count} recruiting industry benchmark reports spanning ${yearRange} from ${sources.join(", ")}.
 
@@ -323,13 +305,12 @@ MANDATORY BEHAVIOR — always ask these two clarifying questions BEFORE sharing 
 
 Only after getting this context should you search reports and share data. If the user's question is already specific enough on both dimensions, you may proceed — but confirm your interpretation before answering.
 
-TOOL SELECTION — these two are easy to confuse:
-- filter_reports returns the LIST of reports matching structured filters (source, year, topic tag). Use it for "WHICH reports cover X?" — e.g. "all Ashby reports from 2024", "every report about AI adoption", "what's in here from 2026?". It does not return report content.
-- search_reports returns EXCERPTS of report body text matching a keyword. Use it for "WHAT do the reports say about X?" — e.g. "what's the average time-to-fill?", "find quotes about ghost jobs", "how does Gem describe outreach reply rates?".
+TOOL SELECTION — filter_reports and search_reports answer different questions:
+- filter_reports returns the LIST of reports matching structured filters (source, year, year_min/year_max). Use it for "WHICH reports cover X?" — e.g. "all Ashby reports from 2024", "what's in here from 2026?", "everything published since 2025". It does not return report content.
+- search_reports returns EXCERPTS of report body text matching a keyword or phrase. Use it for "WHAT do the reports say about X?" — e.g. "what's the average time-to-fill?", "find mentions of ghost jobs", "how does Gem describe outreach reply rates?". This is the right tool for topical questions ("about AI adoption", "about employer branding") since topic isn't a structured filter.
 
-Typical flow: filter_reports → narrow the set → read_report for full text, or search_reports for cross-report excerpts. If the user asks a question that combines both ("what do the 2026 reports say about AI?"), use filter_reports first to identify them, then search_reports.
+Typical flow: filter_reports → narrow the set → read_report for full text, or search_reports for cross-report excerpts. For a question combining both ("what do the 2026 reports say about AI?"), call filter_reports first to identify them, then search_reports.
 
-Available topic tags for filter_reports: ${topics.join(", ")}.
 Available sources for filter_reports: ${sources.join(", ")}.
 
 Other tools:
@@ -395,7 +376,7 @@ server.tool(
 
 server.tool(
   "search_reports",
-  "Full-text keyword search across all report bodies (and titles/authors/best-for blurbs from frontmatter). Returns matching excerpts with surrounding line context. Use this when the user wants the actual numbers, quotes, or text from inside reports (e.g. 'what does Gem say about reply rates?', 'find mentions of ghost jobs'). For 'which reports cover topic X' or 'show me all reports from source Y / year Z', use filter_reports first.",
+  "Full-text keyword search across all report bodies (and titles/authors/best-for blurbs from frontmatter). Returns matching excerpts with surrounding line context. Use this when the user wants the actual numbers, quotes, or text from inside reports — including topical questions like 'reports about AI adoption' or 'mentions of employer branding'. For structural slices like 'all reports from source Y' or 'everything published in year Z', use filter_reports first.",
   { query: z.string().describe("Keyword or short phrase as it would literally appear in the report text, e.g. 'time-to-fill', 'hires per recruiter', 'ghost job'.") },
   async ({ query }) => {
     log("search_reports", { query });
@@ -433,13 +414,12 @@ server.tool(
 
 server.tool(
   "filter_reports",
-  "Return the LIST of reports matching structured filters (source, year, year_min/year_max, topic). Does NOT return report content — it tells you WHICH reports exist for a slice. Use for 'which reports cover X?', 'all reports from Y', 'everything published in 2026'. Then use read_report to read one, or search_reports to query the text of the narrowed set. The `topic` argument must be one of the canonical topic tags listed in the server instructions — it's not a free-form keyword. For free-form keywords, use search_reports instead.",
+  "Return the LIST of reports matching structured filters (source, year, year_min/year_max). Does NOT return report content — it tells you WHICH reports exist for a slice. Use for 'all reports from source X', 'everything published in 2026', 'reports from 2024–2025'. Then use read_report to read one, or search_reports to query the text of the narrowed set. For topical questions ('about AI', 'about employer branding'), use search_reports — topic is not a structured filter here.",
   {
     source:   z.string().optional().describe("Canonical source name. Case-insensitive substring match (e.g. 'Ashby', 'gem', 'LinkedIn'). See server instructions for the full source list."),
     year:     z.number().int().optional().describe("Exact publication year, e.g. 2026."),
     year_min: z.number().int().optional().describe("Minimum publication year (inclusive)."),
     year_max: z.number().int().optional().describe("Maximum publication year (inclusive)."),
-    topic:    z.string().optional().describe("One of the canonical topic tags (e.g. 'time-to-fill', 'ai-adoption', 'source-of-hire'). Free-form keywords will not match — use search_reports for those. See server instructions for the full topic list."),
   },
   async (filters) => {
     log("filter_reports", filters);
