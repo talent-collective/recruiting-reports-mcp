@@ -6,6 +6,8 @@ Thanks for considering a contribution. This project grows by adding new recruiti
 
 1. Save the report as markdown in [reports/](reports/) using the naming convention `<source>-<slug>-<year>.md` (e.g. `gem-recruiting-benchmarks-2026.md`). Use kebab-case, lowercase.
 
+   For **academic** reports, name the file by first author instead of by source — `milkman-akinola-chugh-pathway-audit-2015.md`, not `journal-of-applied-psychology-…`. The journal makes a useless filename prefix and nobody searches for a study by its journal. The journal still goes in `source`.
+
 2. Add a YAML frontmatter block at the top of the file:
 
    ```yaml
@@ -51,7 +53,15 @@ If your report came with prose-style metadata at the top (`**Source:** ...`, `**
 
 ### Canonical sources
 
-ASA · Ashby · Bullhorn · CareerBuilder · Criteria Corp · Deloitte · Employ · Gem · Glassdoor · Greenhouse · HireVue · iCIMS · Indeed · Jobvite · Josh Bersin Company · Korn Ferry · LinkedIn · ManpowerGroup · McKinsey · Mercer · Multiple · NACE · Phenom · PwC · SHRM · SignalFire · Talent Board · WEF
+ASA · Ashby · Bullhorn · CareerBuilder · Criteria Corp · Deloitte · Employ · Gem · Glassdoor · Greenhouse · HireVue · iCIMS · Indeed · Jobvite · Josh Bersin Company · Korn Ferry · LinkedIn · ManpowerGroup · McKinsey · Mercer · Multiple · NACE · Phenom · Pin · PwC · SHRM · SignalFire · Talent Board · WEF
+
+**Academic sources** (peer-reviewed journals and preprint servers, for research on outreach
+response rates): Cochrane · Journal of Applied Psychology · Journal of Labor Economics · arXiv
+
+For an academic source, use the **journal or server name** as `source` and put the researchers
+in `author`. State the domain in `best_for` when the study is not about recruiting — most
+rigorous cold-outreach research is not, and a figure lifted out of its domain is worse than no
+figure.
 
 If you need to add a new source, update `VALID_SOURCES` in [test/frontmatter.test.mjs](test/frontmatter.test.mjs) and the `SOURCE_MAP` in [scripts/extract-frontmatter.mjs](scripts/extract-frontmatter.mjs).
 
