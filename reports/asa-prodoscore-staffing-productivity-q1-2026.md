@@ -1,13 +1,13 @@
-# ASA + Prodoscore — Q1 2026 Staffing Productivity Report
-
-**Source:** https://americanstaffing.net/posts/2026/06/04/staffing-productivity-report/
-**Also covered:** https://www.prnewswire.com/news-releases/staffing-productivity-report-recruiter-interactions-with-candidates-and-clients-jump-60-yoy-number-of-ai-tools-used-grows-302791960.html
-**Published:** 2026-06-04
-**Data:** ~1.6 million monthly data points captured by Prodoscore's workforce productivity platform, drawn from staffing firm recruiter activity; benchmarks compare average recruiter performance against a sample of top performers
-**Period:** Q1 2026 (January–March 2026), with year-over-year comparisons to Q1 2025 and Q1 2024
-**Best for:** Staffing industry recruiter productivity benchmarks, AI tool adoption trends in staffing, relationship-vs-automation balance in TA, top-performer gap analysis
-
 ---
+title: ASA + Prodoscore — Q1 2026 Staffing Productivity Report
+source: ASA
+year: 2026
+url: "https://americanstaffing.net/posts/2026/06/04/staffing-productivity-report/"
+sample_size: "~1.6 million monthly data points captured by Prodoscore's workforce productivity platform, drawn from staffing firm recruiter activity; benchmarks compare average recruiter performance against a sample of top performers"
+best_for: "Staffing industry recruiter productivity benchmarks, AI tool adoption trends in staffing, relationship-vs-automation balance in TA, top-performer gap analysis"
+---
+
+# ASA + Prodoscore — Q1 2026 Staffing Productivity Report
 
 ## Publisher Background
 

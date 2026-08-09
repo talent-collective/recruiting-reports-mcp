@@ -1,12 +1,13 @@
-# iCIMS — May 2026 Workforce Report: AI Reshaping Early Career Hiring
-
-**Source:** https://www.icims.com/company/newsroom/mayinsights2026/
-**Published:** 2026-05-21
-**Data:** Proprietary iCIMS platform data from 3M+ global platform users and 691M+ candidate profiles; supplemented by survey of entry-level job seekers (ages 18–24)
-**Period:** Platform data reflects April 2026 vs. March 2025 baseline; survey conducted spring 2026
-**Best for:** Entry-level hiring gap analysis, AI's impact on early career expectations, April 2026 labor market snapshot, candidate confidence benchmarks
-
 ---
+title: "iCIMS — May 2026 Workforce Report: AI Reshaping Early Career Hiring"
+source: iCIMS
+year: 2026
+url: "https://www.icims.com/company/newsroom/mayinsights2026/"
+sample_size: Proprietary iCIMS platform data from 3M+ global platform users and 691M+ candidate profiles; supplemented by survey of entry-level job seekers (ages 18–24)
+best_for: "Entry-level hiring gap analysis, AI's impact on early career expectations, April 2026 labor market snapshot, candidate confidence benchmarks"
+---
+
+# iCIMS — May 2026 Workforce Report: AI Reshaping Early Career Hiring
 
 ## April 2026 Labor Market Snapshot
 

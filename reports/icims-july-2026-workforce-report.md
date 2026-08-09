@@ -1,12 +1,13 @@
-# iCIMS — July 2026 Workforce Report: Employers Double Down on Frontline Hiring
-
-**Source:** https://www.icims.com/company/newsroom/julyinsights2026/
-**Published:** 2026-07-08
-**Data:** 3M+ global iCIMS platform users; hundreds of millions of platform data points
-**Period:** Labor market data through June 2026
-**Best for:** Frontline hiring strategy, demand-supply gap analysis, H2 2026 planning, sector-specific hiring trends (healthcare, manufacturing, finance)
-
 ---
+title: "iCIMS — July 2026 Workforce Report: Employers Double Down on Frontline Hiring"
+source: iCIMS
+year: 2026
+url: "https://www.icims.com/company/newsroom/julyinsights2026/"
+sample_size: "3M+ global iCIMS platform users; hundreds of millions of platform data points"
+best_for: "Frontline hiring strategy, demand-supply gap analysis, H2 2026 planning, sector-specific hiring trends (healthcare, manufacturing, finance)"
+---
+
+# iCIMS — July 2026 Workforce Report: Employers Double Down on Frontline Hiring
 
 ## Labor Market Snapshot — June 2026
 

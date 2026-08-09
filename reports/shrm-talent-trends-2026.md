@@ -1,12 +1,13 @@
-# SHRM — 2026 Talent Trends Report: Data-Driven Insights for the Future of Work
-
-**Source:** https://www.shrm.org/topics-tools/research/2026-talent-trends
-**Published:** 2026-05-05
-**Data:** 2,094 HR professionals surveyed via SHRM Voice of Work Research Panel (Feb. 9–20, 2026)
-**Period:** Survey data collected February 9–20, 2026
-**Best for:** Recruiting difficulty benchmarks by HR function, skills gap quantification, talent strategy alternatives to external hiring, retention challenge scope
-
 ---
+title: "SHRM — 2026 Talent Trends Report: Data-Driven Insights for the Future of Work"
+source: SHRM
+year: 2026
+url: "https://www.shrm.org/topics-tools/research/2026-talent-trends"
+sample_size: "2,094 HR professionals surveyed via SHRM Voice of Work Research Panel (Feb. 9–20, 2026)"
+best_for: "Recruiting difficulty benchmarks by HR function, skills gap quantification, talent strategy alternatives to external hiring, retention challenge scope"
+---
+
+# SHRM — 2026 Talent Trends Report: Data-Driven Insights for the Future of Work
 
 ## Recruiting Challenges
 

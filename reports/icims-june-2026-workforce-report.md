@@ -1,12 +1,13 @@
-# iCIMS — June 2026 Workforce Report: Tech Layoffs Mask Surge in AI-Driven Hiring Demand
-
-**Source:** https://www.icims.com/company/newsroom/juneinsights2026/
-**Published:** 2026-06-11
-**Data:** 3M+ global iCIMS platform users; hundreds of millions of platform data points
-**Period:** Labor market data through May 2026
-**Best for:** H2 2026 hiring planning, AI role demand vs. tech-layoff narrative, frontline hiring supply-side constraints, TA funnel gap analysis
-
 ---
+title: "iCIMS — June 2026 Workforce Report: Tech Layoffs Mask Surge in AI-Driven Hiring Demand"
+source: iCIMS
+year: 2026
+url: "https://www.icims.com/company/newsroom/juneinsights2026/"
+sample_size: "3M+ global iCIMS platform users; hundreds of millions of platform data points"
+best_for: "H2 2026 hiring planning, AI role demand vs. tech-layoff narrative, frontline hiring supply-side constraints, TA funnel gap analysis"
+---
+
+# iCIMS — June 2026 Workforce Report: Tech Layoffs Mask Surge in AI-Driven Hiring Demand
 
 ## Labor Market Snapshot — May 2026
 

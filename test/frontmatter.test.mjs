@@ -16,6 +16,12 @@ const VALID_SOURCES = new Set([
   "Glassdoor", "PwC", "McKinsey", "CareerBuilder", "Indeed",
   // Cross-source aggregator
   "Multiple",
+  // Industry associations
+  "ASA", "NACE",
+  // Outreach / response-rate platform data
+  "Pin",
+  // Peer-reviewed and preprint research on cold outreach response
+  "Cochrane", "Journal of Applied Psychology", "Journal of Labor Economics", "arXiv",
 ]);
 
 const reports = parsedReports();
