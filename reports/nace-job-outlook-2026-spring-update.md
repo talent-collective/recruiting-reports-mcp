@@ -1,12 +1,13 @@
-# NACE — Job Outlook 2026 Spring Update
-
-**Source:** https://www.naceweb.org/research/reports/2026/job-outlook/spring-update/
-**Published:** 2026-04-27
-**Data:** 185 employer respondents (142 NACE employer members representing 19.9% of eligible members; 43 non-member companies)
-**Period:** Survey conducted February 12 – March 17, 2026; covers college Class of 2026 hiring plans
-**Best for:** Entry-level/college graduate hiring projections, skills-based hiring adoption, employer sentiment on graduate preparedness, internship and co-op value benchmarks
-
 ---
+title: NACE — Job Outlook 2026 Spring Update
+source: NACE
+year: 2026
+url: "https://www.naceweb.org/research/reports/2026/job-outlook/spring-update/"
+sample_size: "185 employer respondents (142 NACE employer members representing 19.9% of eligible members; 43 non-member companies)"
+best_for: "Entry-level/college graduate hiring projections, skills-based hiring adoption, employer sentiment on graduate preparedness, internship and co-op value benchmarks"
+---
+
+# NACE — Job Outlook 2026 Spring Update
 
 ## Hiring Projections for Class of 2026
 

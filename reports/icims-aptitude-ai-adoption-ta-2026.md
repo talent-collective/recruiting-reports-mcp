@@ -1,12 +1,13 @@
-# iCIMS + Aptitude Research — The Definitive Guide to AI Adoption in Talent Acquisition
-
-**Source:** https://www.icims.com/ai-adoption-in-talent-acquisition/
-**Published:** 2026-04-30
-**Data:** 400+ U.S. talent acquisition leaders and practitioners surveyed
-**Period:** Survey conducted early 2026; published April 30, 2026
-**Best for:** AI adoption maturity benchmarks in TA, agentic AI adoption rates, candidate vs. employer AI usage gap, recruiter time reallocation trends
-
 ---
+title: iCIMS + Aptitude Research — The Definitive Guide to AI Adoption in Talent Acquisition
+source: iCIMS
+year: 2026
+url: "https://www.icims.com/ai-adoption-in-talent-acquisition/"
+sample_size: "400+ U.S. talent acquisition leaders and practitioners surveyed"
+best_for: "AI adoption maturity benchmarks in TA, agentic AI adoption rates, candidate vs. employer AI usage gap, recruiter time reallocation trends"
+---
+
+# iCIMS + Aptitude Research — The Definitive Guide to AI Adoption in Talent Acquisition
 
 ## AI Adoption Maturity
 

@@ -16,6 +16,8 @@ const VALID_SOURCES = new Set([
   "Glassdoor", "PwC", "McKinsey", "CareerBuilder", "Indeed",
   // Cross-source aggregator
   "Multiple",
+  // Industry associations
+  "ASA", "NACE",
 ]);
 
 const reports = parsedReports();

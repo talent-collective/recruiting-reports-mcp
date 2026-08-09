@@ -1,12 +1,13 @@
-# Deloitte — Global Gen Z and Millennial Survey 2026: Progress on Their Own Terms
-
-**Source:** https://www.deloitte.com/global/en/issues/work/genz-millennial-survey.html
-**Published:** 2026-05-13
-**Data:** 22,595 respondents — 14,384 Gen Zs (born Jan 1995–Dec 2007) and 8,211 millennials (born Jan 1983–Dec 1994) across 44 countries: North America, Latin America, Western Europe, Eastern Europe, Middle East, Africa, Asia-Pacific
-**Period:** Survey conducted November 24, 2025 – January 15, 2026 (online, self-complete)
-**Best for:** Employer value proposition design, understanding what Gen Z/millennial candidates actually want, AI-at-work expectations, career aspiration benchmarks for offer and retention conversations
-
 ---
+title: "Deloitte — Global Gen Z and Millennial Survey 2026: Progress on Their Own Terms"
+source: Deloitte
+year: 2026
+url: "https://www.deloitte.com/global/en/issues/work/genz-millennial-survey.html"
+sample_size: "22,595 respondents — 14,384 Gen Zs (born Jan 1995–Dec 2007) and 8,211 millennials (born Jan 1983–Dec 1994) across 44 countries: North America, Latin America, Western Europe, Eastern Europe, Middle East, Africa, Asia-Pacific"
+best_for: "Employer value proposition design, understanding what Gen Z/millennial candidates actually want, AI-at-work expectations, career aspiration benchmarks for offer and retention conversations"
+---
+
+# Deloitte — Global Gen Z and Millennial Survey 2026: Progress on Their Own Terms
 
 ## Career Goals and Progression Preferences
 
