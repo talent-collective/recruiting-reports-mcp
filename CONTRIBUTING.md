@@ -53,7 +53,7 @@ If your report came with prose-style metadata at the top (`**Source:** ...`, `**
 
 ### Canonical sources
 
-ASA · Ashby · Bullhorn · CareerBuilder · Criteria Corp · Deloitte · Employ · Gem · Glassdoor · Greenhouse · HireVue · iCIMS · Indeed · Jobvite · Josh Bersin Company · Korn Ferry · LinkedIn · ManpowerGroup · McKinsey · Mercer · Multiple · NACE · Phenom · Pin · PwC · SHRM · SignalFire · Talent Board · WEF
+ASA · Ashby · Bullhorn · CareerBuilder · Criteria Corp · Deloitte · Employ · Gem · Glassdoor · Greenhouse · HireVue · iCIMS · Indeed · Jobvite · Josh Bersin Company · Korn Ferry · LinkedIn · ManpowerGroup · McKinsey · Mercer · Multiple · NACE · Phenom · Pin · PwC · SHRM · SignalFire · Talent Board · WEF · Workday
 
 **Academic sources** (peer-reviewed journals and preprint servers, for research on outreach
 response rates): Cochrane · Journal of Applied Psychology · Journal of Labor Economics · arXiv

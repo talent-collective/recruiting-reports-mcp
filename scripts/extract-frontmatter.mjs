@@ -48,6 +48,7 @@ const SOURCE_MAP = [
   [/shrm/i,                   "SHRM"],
   [/ashby/i,                  "Ashby"],
   [/\bgem\b/i,                "Gem"],
+  [/workday/i,                "Workday"],
 ];
 
 // ── Helpers ──────────────────────────────────────────────────────────────────

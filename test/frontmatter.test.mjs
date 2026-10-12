@@ -20,6 +20,8 @@ const VALID_SOURCES = new Set([
   "ASA", "NACE",
   // Outreach / response-rate platform data
   "Pin",
+  // HCM platform workforce data
+  "Workday",
   // Peer-reviewed and preprint research on cold outreach response
   "Cochrane", "Journal of Applied Psychology", "Journal of Labor Economics", "arXiv",
 ]);
